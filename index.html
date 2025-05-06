@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>나츠미 소개</title>
-  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="/natsumi-bot-Introduction/css/style.css">
 </head>
 <body>
   <div class="invite-button-fixed">
@@ -73,11 +73,19 @@
   </div>
 
   <div class="profile-container">
-    <img src="./3575C7AA-8A19-4EF1-8241-71304B784788.png" alt="나츠미 프로필 이미지" class="profile-image">
+    <img src="/natsumi-bot-Introduction/3575C7AA-8A19-4EF1-8241-71304B784788.png" alt="나츠미 프로필 이미지" class="profile-image">
     <h1>나츠미 를 찾아왔구나? 흥!</h1>
     <a class="invite-button" href="https://discord.com/api/oauth2/authorize?client_id=905355491708903485&permissions=4294443007&scope=bot%20applications.commands">나츠미 초대하기</a>
   </div>
 
-  <script src="./js/script.js"></script>
+  <div id="fullScreenOverlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); color: white; z-index: 101; display: none; justify-content: center; align-items: center; flex-direction: column;">
+    <div style="background-color: #333; padding: 20px; border-radius: 8px; max-width: 80%; text-align: center;">
+      <h2 id="fullScreenKoreanCommand" style="margin-bottom: 10px;"></h2>
+      <p id="fullScreenText" style="font-size: 1.2em;"></p>
+      <button id="closeFullScreen" style="padding: 10px 20px; background-color: #ff69b4; color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px;" onclick="document.getElementById('fullScreenOverlay').style.display='none';">닫기</button>
+    </div>
+  </div>
+
+  <script src="/natsumi-bot-Introduction/js/script.js"></script>
 </body>
 </html>
