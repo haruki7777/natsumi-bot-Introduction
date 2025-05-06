@@ -1,35 +1,39 @@
+/* 기본 스타일 */
 body {
-  font-family: 'BakDaHyeon', sans-serif;
-  color: #333;
-  text-align: center;
-  padding: 30px;
-  margin: 0;
-  background-color: #f8f8f8;
-  background-image: url('./IMG_6063.jpeg'); /* 배경 이미지 경로를 올바르게 설정해주세요! */
-  background-size: cover; /* 이미지를 전체 화면에 맞게 채움 (비율 유지) */
+  font-family: 'BakDaHyeon', sans-serif; /* 폰트 설정 */
+  color: #333; /* 기본 글자 색상 */
+  text-align: center; /* 텍스트 가운데 정렬 */
+  padding: 30px; /* 내부 여백 */
+  margin: 0; /* 외부 여백 제거 */
+  background-color: #f8f8f8; /* 기본 배경 색상 */
+  background-image: url('./IMG_6063.jpeg'); /* 배경 이미지 경로 (확인 필요!) */
+  background-size: cover; /* 배경 이미지를 요소에 맞춰 확대/축소하여 채움 */
   background-repeat: no-repeat; /* 배경 이미지 반복 안 함 */
   background-position: center center; /* 배경 이미지 중앙 배치 */
   min-height: 100vh; /* 최소 높이를 뷰포트 높이로 설정하여 화면 전체에 배경 적용 */
 }
 
+/* 폰트 설정 */
 @font-face {
   font-family: 'BakDaHyeon';
-  src: url('../fonts/온글잎 박다현체.ttf') format('truetype');
+  src: url('../fonts/온글잎 박다현체.ttf') format('truetype'); /* 폰트 파일 경로 (확인 필요!) */
   font-weight: normal;
   font-style: normal;
 }
 
+/* 고정된 초대 버튼 */
 .invite-button-fixed {
   position: fixed;
   top: 20px;
   right: 20px;
-  z-index: 100;
+  z-index: 100; /* 다른 요소 위에 표시 */
 }
 
 .invite-button-fixed a:first-child {
-  display: none; /* "나츠미 초대" 텍스트 숨김 */
+  display: none; /* 텍스트 숨김 */
 }
 
+/* 메뉴 토글 버튼 */
 .menu-toggle-button {
   position: fixed;
   top: 20px;
@@ -49,24 +53,25 @@ body {
   background-color: #ff85c1;
 }
 
+/* 오른쪽 메뉴 컨테이너 */
 .right-menu-container {
   position: fixed;
   top: 0;
   right: 0;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.9); /* 반투명 흰색 배경 */
   border-left: 2px solid #ff69b4;
   width: 280px;
-  transform: translateX(100%);
-  transition: transform 0.3s ease-in-out;
+  transform: translateX(100%); /* 초기 상태에서 숨김 */
+  transition: transform 0.3s ease-in-out; /* 슬라이드 애니메이션 */
   padding: 20px;
-  box-sizing: border-box;
-  overflow-y: auto;
-  text-align: left;
+  box-sizing: border-box; /* padding, border가 width에 포함되도록 */
+  overflow-y: auto; /* 내용이 많을 경우 스크롤 */
+  text-align: left; /* 텍스트 왼쪽 정렬 */
 }
 
 .right-menu-container.open {
-  transform: translateX(0);
+  transform: translateX(0); /* 메뉴 보이기 */
 }
 
 .right-menu-container h2 {
@@ -125,53 +130,7 @@ body {
   background-color: #ff85c1;
 }
 
-.collapsible {
-  margin-bottom: 12px;
-}
-
-.collapsible-button {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  background-color: #f0f8ff;
-  color: #333;
-  border: 1px solid #add8e6;
-  border-radius: 5px;
-  text-align: left;
-  cursor: pointer;
-  margin-bottom: 6px;
-}
-
-.collapsible-button:hover {
-  background-color: #e0ffff;
-}
-
-.collapsible-content {
-  display: none;
-  padding: 12px;
-  border: 1px solid #eee;
-  border-radius: 5px;
-  background-color: #f9f9f9;
-  font-size: 0.9em;
-}
-
-.collapsible-content.open {
-  display: block;
-}
-
-.collapsible-content .menu-content {
-  margin-top: 0;
-  border: none;
-  padding: 0;
-  background-color: transparent;
-}
-
-.collapsible-content .menu-content:not(:last-child) {
-  margin-bottom: 12px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid #eee;
-}
-
+/* 명령어 카테고리 버튼 */
 .command-category-button {
   display: block;
   width: 100%;
@@ -189,6 +148,7 @@ body {
   background-color: #fff0f5;
 }
 
+/* 명령어 목록 */
 .command-list {
   display: none;
   padding-left: 15px;
@@ -200,6 +160,7 @@ body {
   display: block;
 }
 
+/* 명령어 아이템 버튼 */
 .command-item-button {
   display: block;
   width: 100%;
@@ -215,6 +176,7 @@ body {
   color: #ff69b4;
 }
 
+/* 명령어 설명 */
 .command-description {
   margin-top: 15px;
   padding: 12px;
@@ -224,16 +186,18 @@ body {
   font-size: 0.9em;
 }
 
+/* 프로필 컨테이너 */
 .profile-container {
-  background: rgba(255, 228, 244, 0.8);
+  background: rgba(255, 228, 244, 0.8); /* 반투명 분홍색 배경 */
   border: 3px solid #ff69b4;
   border-radius: 15px;
   padding: 20px;
   max-width: 400px;
   margin: 30px auto;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
 }
 
+/* 프로필 이미지 */
 .profile-image {
   width: 100px;
   border-radius: 50%;
@@ -241,12 +205,14 @@ body {
   margin-bottom: 15px;
 }
 
+/* 프로필 제목 */
 .profile-container h1 {
   color: #ff69b4;
   font-size: 1.8em;
   margin-bottom: 20px;
 }
 
+/* 초대하기 버튼 (프로필 하단) */
 .invite-button {
   display: inline-block;
   padding: 12px 24px;
@@ -255,7 +221,7 @@ body {
   text-decoration: none;
   border-radius: 8px;
   font-weight: bold;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease; /* 호버 시 부드러운 색상 변화 */
   font-size: 1.1em;
 }
 
