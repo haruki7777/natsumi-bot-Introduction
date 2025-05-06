@@ -22,7 +22,6 @@ function toggleCommandList(categoryId) {
   } else {
     console.error(`Error: Command list with ID '${categoryId}-commands' not found.`);
   }
-  hideFullScreen(); // 기존 hideCommandDescription() 대신 hideFullScreen() 호출
 }
 
 function showDescription(command) {
@@ -39,7 +38,7 @@ function showDescription(command) {
     'natsumi': '... 나? ... 흥, 네놈 따위가 날 뭘 안다고...!',
     'slotmachine': '... 슬롯머신? ... 어리석은 짓은 혼자 해! ... 딱히 말리진 않겠지만.',
     'translate': '... 번역? ... 네놈 나라 말도 제대로 못 하는 건가? ... 한심군.',
-    'rank': '... 도박 랭킹? ... 흥, 그런 쓸데없는 거나 신경 쓰다니...',
+    'rank': '... 도박랭킹? ... 흥, 그런 쓸데없는 거나 신경 쓰다니...',
     'money': '... 돈? ... 흥, 네놈의 돈 따위 알 바 아니야!',
     'sfw': '... 흥, 변태 같은 짓은 하지 마! ... 딱히 걱정하는 건 아니니까!',
     'nsfw': '... 맘대로 해! ... 난 상관 없어.',
