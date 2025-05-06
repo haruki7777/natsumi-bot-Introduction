@@ -107,11 +107,22 @@ function hideFullScreen() {
 
 document.addEventListener('DOMContentLoaded', function() {
   const backgroundMusic = document.getElementById('backgroundMusic');
-  if (backgroundMusic) {
-    backgroundMusic.play().catch(error => {
-      console.error("자동 음악 재생 실패:", error);
-      // 자동 재생이 실패한 경우, 사용자에게 재생 버튼을 제공하거나
-      // 다른 방식으로 음악 재생을 유도할 수 있습니다.
+  const playButton = document.getElementById('playMusicButton');
+
+  if (playButton && backgroundMusic) {
+    playButton.addEventListener('click', function() {
+      if (backgroundMusic.paused) {
+        backgroundMusic.play().catch(error => {
+          console.error("음악 재생 실패:", error);
+          alert("음악 재생에 실패했습니다. 브라우저 설정을 확인해주세요.");
+        });
+        playButton.textContent = "음악 일시정지";
+      } else {
+        backgroundMusic.pause();
+        playButton.textContent = "음악 재생";
+      }
     });
+  } else {
+    console.error("Error: 재생 버튼 또는 배경 음악 요소를 찾을 수 없습니다.");
   }
 });
