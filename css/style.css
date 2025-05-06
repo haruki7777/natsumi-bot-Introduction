@@ -1,10 +1,10 @@
 body {
-  font-family: 'BakDaHyeon', sans-serif; /* 적용할 폰트 */
+  font-family: 'BakDaHyeon', sans-serif;
   color: #333;
   text-align: center;
   padding: 30px;
   margin: 0;
-  background-color: #f8f8f8; /* 기본 배경색 */
+  background-color: #f8f8f8;
 }
 
 @font-face {
@@ -60,10 +60,15 @@ body {
   z-index: 100;
 }
 
+/* "나츠미 초대" 텍스트 숨기기 */
+.invite-button-fixed a:first-child {
+  display: none;
+}
+
 .menu-toggle-button {
   position: fixed;
   top: 20px;
-  right: 20px;
+  right: 20px; /* 메뉴 버튼을 오른쪽으로 고정 */
   z-index: 99;
   padding: 8px 12px;
   background-color: #ff69b4;
@@ -82,12 +87,12 @@ body {
 .right-menu-container {
   position: fixed;
   top: 0;
-  right: 0;
+  right: 0; /* 메뉴 컨테이너를 오른쪽으로 고정 */
   height: 100%;
   background-color: rgba(255, 255, 255, 0.9);
   border-left: 2px solid #ff69b4;
   width: 280px;
-  transform: translateX(100%);
+  transform: translateX(100%); /* 초기 상태에서 오른쪽으로 숨김 */
   transition: transform 0.3s ease-in-out;
   padding: 20px;
   box-sizing: border-box;
@@ -96,7 +101,7 @@ body {
 }
 
 .right-menu-container.open {
-  transform: translateX(0);
+  transform: translateX(0); /* 활성화 시 오른쪽에서 슬라이드 인 */
 }
 
 .right-menu-container h2 {
