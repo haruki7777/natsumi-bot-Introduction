@@ -1,10 +1,17 @@
 body {
-  font-family: sans-serif; /* 기본 폰트 설정 (나중에 필요하면 변경) */
+  font-family: 'BakDaHyeon', sans-serif; /* 적용할 폰트 */
   color: #333;
   text-align: center;
   padding: 30px;
-  margin: 0; /* body 기본 마진 제거 */
-  background-color: #f8f8f8; /* 기본 배경색 설정 (배경 이미지 없을 때) */
+  margin: 0;
+  background-color: #f8f8f8; /* 기본 배경색 */
+}
+
+@font-face {
+  font-family: 'BakDaHyeon';
+  src: url('../fonts/온글잎 박다현체.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 
 .profile-container {
