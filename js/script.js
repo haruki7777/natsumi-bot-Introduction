@@ -70,8 +70,8 @@ function showDescription(command) {
     case 'translate': koreanCommand = '/번역'; break;
     case 'rank': koreanCommand = '/도박랭킹'; break;
     case 'money': koreanCommand = '/머니'; break;
-    case 'sfw': koreanCommand = '/나츠미 sfw'; break;
-    case 'nsfw': koreanCommand = '/나츠미 nsfw'; break;
+    case 'sfw': koreanCommand = '/sfw'; break;
+    case 'nsfw': koreanCommand = '/nsfw'; break;
     case 'intro': koreanCommand = '/소개'; break;
     case 'prefix': koreanCommand = '/호출어'; break;
     case 'stealsticker': koreanCommand = '/스틸 스티커'; break;
