@@ -6,10 +6,10 @@ body {
   margin: 0;
   background-color: #f8f8f8;
   background-image: url('./IMG_6063.jpeg'); /* 배경 이미지 경로를 올바르게 설정해주세요! */
-  background-size: cover; /* 이미지를 전체 화면에 맞게 채움 */
+  background-size: cover; /* 이미지를 전체 화면에 맞게 채움 (비율 유지) */
   background-repeat: no-repeat; /* 배경 이미지 반복 안 함 */
   background-position: center center; /* 배경 이미지 중앙 배치 */
-  min-height: 100vh; /* 최소 높이를 뷰포트 높이로 설정 */
+  min-height: 100vh; /* 최소 높이를 뷰포트 높이로 설정하여 화면 전체에 배경 적용 */
 }
 
 @font-face {
@@ -19,45 +19,6 @@ body {
   font-style: normal;
 }
 
-.profile-container {
-  background: rgba(255, 228, 244, 0.8);
-  border: 3px solid #ff69b4;
-  border-radius: 15px;
-  padding: 20px;
-  max-width: 400px;
-  margin: 30px auto;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.profile-image {
-  width: 100px;
-  border-radius: 50%;
-  border: 2px solid #ff69b4;
-  margin-bottom: 15px;
-}
-
-.profile-container h1 {
-  color: #ff69b4;
-  font-size: 1.8em;
-  margin-bottom: 20px;
-}
-
-.invite-button {
-  display: inline-block;
-  padding: 12px 24px;
-  background-color: #ff69b4;
-  color: white;
-  text-decoration: none;
-  border-radius: 8px;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-  font-size: 1.1em;
-}
-
-.invite-button:hover {
-  background-color: #ff85c1;
-}
-
 .invite-button-fixed {
   position: fixed;
   top: 20px;
@@ -65,15 +26,14 @@ body {
   z-index: 100;
 }
 
-/* "나츠미 초대" 텍스트 숨기기 */
 .invite-button-fixed a:first-child {
-  display: none;
+  display: none; /* "나츠미 초대" 텍스트 숨김 */
 }
 
 .menu-toggle-button {
   position: fixed;
   top: 20px;
-  right: 20px; /* 메뉴 버튼을 오른쪽으로 고정 */
+  right: 20px;
   z-index: 99;
   padding: 8px 12px;
   background-color: #ff69b4;
@@ -92,12 +52,12 @@ body {
 .right-menu-container {
   position: fixed;
   top: 0;
-  right: 0; /* 메뉴 컨테이너를 오른쪽으로 고정 */
+  right: 0;
   height: 100%;
   background-color: rgba(255, 255, 255, 0.9);
   border-left: 2px solid #ff69b4;
   width: 280px;
-  transform: translateX(100%); /* 초기 상태에서 오른쪽으로 숨김 */
+  transform: translateX(100%);
   transition: transform 0.3s ease-in-out;
   padding: 20px;
   box-sizing: border-box;
@@ -106,7 +66,7 @@ body {
 }
 
 .right-menu-container.open {
-  transform: translateX(0); /* 활성화 시 오른쪽에서 슬라이드 인 */
+  transform: translateX(0);
 }
 
 .right-menu-container h2 {
@@ -262,4 +222,43 @@ body {
   border: 1px solid #eee;
   border-radius: 5px;
   font-size: 0.9em;
+}
+
+.profile-container {
+  background: rgba(255, 228, 244, 0.8);
+  border: 3px solid #ff69b4;
+  border-radius: 15px;
+  padding: 20px;
+  max-width: 400px;
+  margin: 30px auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-image {
+  width: 100px;
+  border-radius: 50%;
+  border: 2px solid #ff69b4;
+  margin-bottom: 15px;
+}
+
+.profile-container h1 {
+  color: #ff69b4;
+  font-size: 1.8em;
+  margin-bottom: 20px;
+}
+
+.invite-button {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #ff69b4;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  font-size: 1.1em;
+}
+
+.invite-button:hover {
+  background-color: #ff85c1;
 }
