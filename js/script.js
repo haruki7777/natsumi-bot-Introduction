@@ -1,3 +1,30 @@
+function toggleRightMenu() {
+  const rightMenu = document.getElementById('rightMenu');
+  if (rightMenu) {
+    rightMenu.classList.toggle('open');
+  } else {
+    console.error("Error: 'rightMenu' element not found.");
+  }
+}
+
+function toggleCommandList(categoryId) {
+  const commandList = document.getElementById(categoryId + '-commands');
+  const helpContent = document.getElementById('help-content');
+  if (commandList) {
+    commandList.classList.toggle('active');
+    if (helpContent) {
+      if (commandList.classList.contains('active')) {
+        helpContent.classList.remove('active');
+      } else {
+        helpContent.classList.add('active');
+      }
+    }
+  } else {
+    console.error(`Error: Command list with ID '${categoryId}-commands' not found.`);
+  }
+  hideFullScreen(); // 기존 hideCommandDescription() 대신 hideFullScreen() 호출
+}
+
 function showDescription(command) {
   const fullScreenOverlay = document.getElementById('fullScreenOverlay');
   const fullScreenKoreanCommand = document.getElementById('fullScreenKoreanCommand');
@@ -72,7 +99,7 @@ function showDescription(command) {
   }
 }
 
-function hideCommandDescription() {
+function hideFullScreen() {
   const fullScreenOverlay = document.getElementById('fullScreenOverlay');
   if (fullScreenOverlay) {
     fullScreenOverlay.style.display = 'none';
