@@ -18,27 +18,25 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      display: flex; /* 아이콘과 텍스트를 함께 표시하기 위해 flex 사용 */
-      align-items: center; /* 아이콘과 텍스트를 수직으로 가운데 정렬 */
-      gap: 8px; /* 아이콘과 텍스트 간 간격 추가 */
-      font-size: 16px; /* 아이콘 크기 설정 */
-      line-height: 0; /* 텍스트 높이로 인한 간격 제거 */
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 16px;
+      line-height: 0;
     }
     #playMusicButton.playing {
-      background-color: #f03e3e; /* 재생 중일 때 버튼 색 변경 */
+      background-color: #f03e3e;
     }
-    /* 재생/일시정지 아이콘 */
     #playMusicButton::before {
-      content: '▶'; /* 기본적으로 재생 아이콘 표시 */
-      font-size: 16px; /* 아이콘 크기 설정 */
+      content: '▶';
+      font-size: 16px;
     }
     #playMusicButton.playing::before {
-      content: '❚❚'; /* 재생 중일 때는 일시정지 아이콘 표시 */
+      content: '❚❚';
     }
     #playMusicButton span {
-      display: none; /* 텍스트 숨김 */
+      display: none;
     }
-
   </style>
 </head>
 <body>
@@ -129,27 +127,22 @@
   <script>
     const music = document.getElementById('backgroundMusic');
     const button = document.getElementById('playMusicButton');
-    let isPlaying = false; // 재생 상태를 추적하는 변수
+    let isPlaying = false;
 
-    // 자동 재생 시도 및 처리
     function playMusic() {
       music.muted = false;
       const playPromise = music.play();
-
-      if (playPromise !== undefined) {
+      if (playPromise) {
         playPromise.then(() => {
-          // 자동 재생 성공
           isPlaying = true;
           button.classList.add('playing');
         }).catch(error => {
-          // 자동 재생 실패 (사용자 상호 작용 필요)
-          console.log("자동 재생 실패:", error);
-          // Safari에서는 muted 상태로 재생 시도 후, 사용자 상호작용 후에 unmute 해야 함
+          console.error("Playback prevented:", error);
           if (error.name === "NotAllowedError") {
-            music.muted = true; // muted 상태로 설정
+            music.muted = true;
             button.addEventListener('click', () => {
               if (!isPlaying) {
-                music.muted = false; // 사용자 상호 작용 후 unmute
+                music.muted = false;
                 music.play().then(() => {
                   isPlaying = true;
                   button.classList.add('playing');
@@ -157,12 +150,12 @@
                   console.error("재생 실패:", err);
                 });
               }
-            }, { once: true }); // 이벤트 리스너는 한 번만 실행되도록 설정
+            }, { once: true });
           }
         });
       }
     }
-    // 페이지 로드 시 음악 자동 재생
+
     window.onload = () => {
       playMusic();
     };
@@ -170,19 +163,18 @@
     button.addEventListener('click', () => {
       if (isPlaying) {
         music.pause();
-        button.classList.remove('playing'); // 클래스 제거
+        button.classList.remove('playing');
+        isPlaying = false;
       } else {
-        music.play().then(()=>{
-          button.classList.add('playing'); // 클래스 추가
-        }).catch(err=>{
-          console.error("재생 실패",err)
-        })
-
+        music.play().then(() => {
+          button.classList.add('playing');
+          isPlaying = true;
+        }).catch(err => {
+          console.error("재생 실패:", err);
+        });
       }
-      isPlaying = !isPlaying; // 상태 반전
     });
 
-    // 음악이 끝났을 때 재생 버튼 상태를 업데이트 (선택 사항)
     music.addEventListener('ended', () => {
       isPlaying = false;
       button.classList.remove('playing');
