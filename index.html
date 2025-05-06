@@ -5,6 +5,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>나츠미 소개</title>
   <link rel="stylesheet" href="/natsumi-bot-Introduction/css/style.css">
+  <style>
+    /* CSS 수정: 음악 재생/일시정지 버튼 스타일 */
+    #playMusicButton {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      z-index: 100;
+      padding: 10px 20px;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      display: flex; /* 아이콘과 텍스트를 함께 표시하기 위해 flex 사용 */
+      align-items: center; /* 아이콘과 텍스트를 수직으로 가운데 정렬 */
+      gap: 8px; /* 아이콘과 텍스트 간 간격 추가 */
+    }
+    #playMusicButton.playing {
+      background-color: #f03e3e; /* 재생 중일 때 버튼 색 변경 */
+    }
+    /* 재생/일시정지 아이콘 */
+    #playMusicButton::before {
+      content: '▶'; /* 기본적으로 재생 아이콘 표시 */
+      font-size: 16px; /* 아이콘 크기 설정 */
+    }
+    #playMusicButton.playing::before {
+      content: '❚❚'; /* 재생 중일 때는 일시정지 아이콘 표시 */
+    }
+  </style>
 </head>
 <body>
   <div class="invite-button-fixed">
@@ -86,21 +115,45 @@
     </div>
   </div>
 
-  <button id="playMusicButton" style="position: fixed; bottom: 20px; left: 20px; z-index: 100; padding: 10px 20px; background-color: #ff69b4; color: white; border: none; border-radius: 5px; cursor: pointer;">음악 재생</button>
+  <button id="playMusicButton" class="playing" style="position: fixed; bottom: 20px; left: 20px; z-index: 100;">음악 재생</button>
   <audio id="backgroundMusic" src="/natsumi-bot-Introduction/music/CHUU - Strawberry Rush (PADO Remix).mp3" loop style="display:none;" muted></audio>
 
   <script src="/natsumi-bot-Introduction/js/script.js"></script>
 
-  <!-- 음악 버튼 스크립트 추가 -->
   <script>
     const music = document.getElementById('backgroundMusic');
     const button = document.getElementById('playMusicButton');
+    let isPlaying = false; // 재생 상태를 추적하는 변수
+
     button.addEventListener('click', () => {
-      music.muted = false;
-      music.play().catch(e => {
-        console.log("음악 재생 실패: ", e);
-      });
+      if (isPlaying) {
+        music.pause();
+        button.classList.remove('playing'); // 클래스 제거
+      } else {
+        music.muted = false;
+        music.play().catch(e => {
+          console.log("음악 재생 실패: ", e);
+        });
+        button.classList.add('playing'); // 클래스 추가
+      }
+      isPlaying = !isPlaying; // 상태 반전
     });
+
+    // 음악이 끝났을 때 재생 버튼 상태를 업데이트 (선택 사항)
+    music.addEventListener('ended', () => {
+      isPlaying = false;
+      button.classList.remove('playing');
+    });
+
+    // 페이지 로드 시 음악 자동 재생 (선택 사항 - 사용자 경험에 따라 결정)
+    // window.onload = () => {
+    //   music.muted = false;
+    //   music.play().catch(e => {
+    //     console.log("음악 자동 재생 실패:", e);
+    //   });
+    //   isPlaying = true;
+    //   button.classList.add('playing');
+    // };
   </script>
 </body>
 </html>
