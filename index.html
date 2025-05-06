@@ -90,5 +90,17 @@
   <audio id="backgroundMusic" src="/natsumi-bot-Introduction/music/CHUU - Strawberry Rush (PADO Remix).mp3" loop style="display:none;" muted></audio>
 
   <script src="/natsumi-bot-Introduction/js/script.js"></script>
+
+  <!-- 음악 버튼 스크립트 추가 -->
+  <script>
+    const music = document.getElementById('backgroundMusic');
+    const button = document.getElementById('playMusicButton');
+    button.addEventListener('click', () => {
+      music.muted = false;
+      music.play().catch(e => {
+        console.log("음악 재생 실패: ", e);
+      });
+    });
+  </script>
 </body>
 </html>
