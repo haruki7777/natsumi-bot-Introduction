@@ -5,21 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>나츠미 소개</title>
   <link rel="stylesheet" href="./css/style.css">
+  <style>
+    body {
+      background-image: url('./your-background-image.png'); /* 여기에 배경 이미지 파일 경로를 넣어주세요 */
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+    }
+  </style>
 </head>
 <body>
   <div class="invite-button-fixed">
     <a class="button" href="https://discord.com/api/oauth2/authorize?client_id=905355491708903485&permissions=4294443007&scope=bot%20applications.commands">나츠미 초대</a>
   </div>
 
-  <button class="menu-toggle-button" onclick="toggleRightMenu()">메뉴 열기</button>
-
-  <div class="right-menu-container" id="rightMenu">
+  <button class="menu-toggle-button" onclick="toggleRightMenu()">☰</button> <div class="right-menu-container" id="rightMenu">
     <h2>나츠미 봇 도움말</h2>
     <div id="help-content" class="menu-content active">
       <h3>도움말</h3>
       <p>흥, 나츠미 사용법? 그렇게 알고 싶으면 알려주지. ... 딱히 네가 부탁해서 그런 건 아니니까 착각하지 마!</p>
       <ul>
-        <li>오른쪽 위의 '메뉴 열기' 버튼을 눌러 명령어를 확인할 수 있어.</li>
+        <li>오른쪽 위의 '☰' 버튼을 눌러 명령어를 확인할 수 있어.</li>
         <li>각 명령어 버튼을 클릭하면 간단한 설명을 볼 수 있다.</li>
         <li>더 자세한 사용법은 ... 알아서 찾아봐!</li>
       </ul>
