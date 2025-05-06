@@ -84,6 +84,54 @@
       background-color: #ff85c1;
     }
 
+    .collapsible {
+      margin-bottom: 10px;
+    }
+
+    .collapsible-button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background-color: #f0f8ff;
+      color: #333;
+      border: 1px solid #add8e6;
+      border-radius: 5px;
+      text-align: left;
+      cursor: pointer;
+      margin-bottom: 5px; /* 버튼과 내용 사이 간격 */
+    }
+
+    .collapsible-button:hover {
+      background-color: #e0ffff;
+    }
+
+    .collapsible-content {
+      display: none;
+      padding: 10px;
+      border: 1px solid #eee;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+      font-size: 0.9em;
+      text-align: left;
+    }
+
+    .collapsible-content.open {
+      display: block;
+    }
+
+    .collapsible-content .menu-content {
+      margin-top: 0; /* 내부 내용의 margin 조절 */
+      border: none;
+      padding: 0;
+      background-color: transparent;
+    }
+
+    .collapsible-content .menu-content:not(:last-child) {
+      margin-bottom: 10px; /* 도움말과 소개 사이 간격 */
+      padding-bottom: 10px;
+      border-bottom: 1px solid #eee;
+    }
+
     .command-category-button {
       display: block;
       width: 100%;
@@ -134,6 +182,7 @@
       border-radius: 5px;
       font-size: 0.9em;
       text-align: left;
+      display: none;
     }
   </style>
 </head>
@@ -145,7 +194,29 @@
   <button class="menu-toggle-button" onclick="toggleRightMenu()">메뉴 열기</button>
 
   <div class="right-menu-container" id="rightMenu">
-    <h2>명령어 메뉴</h2>
+    <h2>메뉴</h2>
+    <div class="collapsible">
+      <button type="button" class="collapsible-button" onclick="toggleCollapsible('info')">도움말/소개</button>
+      <div class="collapsible-content" id="info-content">
+        <div id="help-content" class="menu-content">
+          <h3>도움말</h3>
+          <p>흥, 나츠미 사용법? 그렇게 알고 싶으면 알려주지. ... 딱히 네가 부탁해서 그런 건 아니니까 착각하지 마!</p>
+          <ul>
+            <li>오른쪽 위의 '메뉴 열기' 버튼을 눌러 명령어를 확인할 수 있어.</li>
+            <li>각 명령어 버튼을 클릭하면 간단한 설명을 볼 수 있다.</li>
+            <li>더 자세한 사용법은 ... 알아서 찾아봐!</li>
+          </ul>
+        </div>
+        <div id="intro-content" class="menu-content">
+          <h3>소개</h3>
+          <p>나에 대한 소개? ... 뭐, 딱히 숨길 것도 없으니 말해주지. ... 네가 궁금해하는 것 같으니 어쩔 수 없군.</p>
+          <p>난 츤데레 스타일 디스코드 봇, 나츠미라고 한다! 귀찮게 이것저것 시키지 마! ... 그래도 시키면 해줄 수밖에 없겠지만.</p>
+          <p>내 매력에 너무 빠지진 마! ... 딱히 네가 좋아해도 상관 없지만.</p>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <h3>명령어</h3>
     <button class="command-category-button" onclick="toggleCommandList('general')">일반 명령어</button>
     <ul class="command-list" id="general-commands">
       <li><button class="command-item-button" onclick="showDescription('ping')">/핑</button></li>
@@ -205,7 +276,7 @@
       'help': '... 도움말? ... 혼자서는 아무것도 못 하는 건가? ... 쯧, 귀찮게 하네.',
       'natsumi': '... 나? ... 흥, 네놈 따위가 날 뭘 안다고...!',
       'slotmachine': '... 슬롯머신? ... 어리석은 짓은 혼자 해! ... 딱히 말리진 않겠지만.',
-      'translate': '... 번역? ... 네놈 나라 말도 제대로 못 하는 건가? ... 한심하군.',
+      'translate': '... 번역? ... 네놈 나라 말도 제대로 못 하는 건가? ... 한심군.',
       'rank': '... 도박 랭킹? ... 흥, 그런 쓸데없는 거나 신경 쓰다니...',
       'money': '... 돈? ... 흥, 네놈의 돈 따위 알 바 아니야!',
       'sfw': '... 흥, 변태 같은 짓은 하지 마! ... 딱히 걱정하는 건 아니니까!',
@@ -229,54 +300,16 @@
     function toggleRightMenu() {
       const rightMenu = document.getElementById('rightMenu');
       rightMenu.classList.toggle('open');
+      // 메뉴가 열릴 때 모든 접히는 내용은 닫고, 명령어 설명은 숨김
+      const infoContent = document.getElementById('info-content');
+      if (infoContent) infoContent.classList.remove('open');
+      const commandDescriptionDiv = document.getElementById('commandDescription');
+      if (commandDescriptionDiv) commandDescriptionDiv.style.display = 'none';
     }
 
-    function toggleCommandList(categoryId) {
-      const commandList = document.getElementById(categoryId + '-commands');
-      commandList.classList.toggle('active');
-    }
-
-    function showDescription(command) {
-      const descriptionDiv = document.getElementById('commandDescription');
-      let koreanCommand = '';
-      switch (command) {
-        case 'ping': koreanCommand = '/핑'; break;
-        case 'serverinfo': koreanCommand = '/서버정보'; break;
-        case 'userinfo': koreanCommand = '/유저정보'; break;
-        case 'attendance': koreanCommand = '/출석'; break;
-        case 'balance': koreanCommand = '/잔액'; break;
-        case 'help': koreanCommand = '/도움말'; break;
-        case 'natsumi': koreanCommand = '/나츠미'; break;
-        case 'slotmachine': koreanCommand = '/슬롯머신'; break;
-        case 'translate': koreanCommand = '/번역'; break;
-        case 'rank': koreanCommand = '/도박랭킹'; break;
-        case 'money': koreanCommand = '/머니'; break;
-        case 'sfw': koreanCommand = '/나츠미 sfw'; break;
-        case 'nsfw': koreanCommand = '/나츠미 nsfw'; break;
-        case 'intro': koreanCommand = '/소개'; break;
-        case 'prefix': koreanCommand = '/호출어'; break;
-        case 'stealsticker': koreanCommand = '/스틸 스티커'; break;
-        case 'stealemote': koreanCommand = '/스틸 이모지'; break;
-        case 'ban': koreanCommand = '/밴'; break;
-        case 'unban': koreanCommand = '/언밴'; break;
-        case 'mute': koreanCommand = '/뮤트'; break;
-        case 'unmute': koreanCommand = '/언뮤트'; break;
-        case 'kick': koreanCommand = '/킥'; break;
-        case 'clear': koreanCommand = '/청소'; break;
-        case 'nsfwgen': koreanCommand = '/nsfw생성'; break;
-        case 'vote': koreanCommand = '/투표'; break;
-        case 'learn': koreanCommand = '/학습'; break;
-        case 'reload': koreanCommand = '/리로드'; break;
-        default: koreanCommand = '/' + command; break;
-      }
-      if (commandDescriptions[command]) {
-        descriptionDiv.textContent = `${koreanCommand} - ${commandDescriptions[command]}`;
-        descriptionDiv.style.display = 'block';
-      } else {
-        descriptionDiv.textContent = '';
-        descriptionDiv.style.display = 'none';
-      }
-    }
-  </script>
-</body>
-</html>
+    function toggleCollapsible(contentId) {
+      const content = document.getElementById(contentId + '-content');
+      content.classList.toggle('open');
+      // 접히는 내용이 열릴 때 명령어 설명은 숨김
+      const commandDescriptionDiv = document.getElementById('commandDescription');
+      if (commandDescriptionDiv) commandDescriptionDiv.style.display = 'none';
