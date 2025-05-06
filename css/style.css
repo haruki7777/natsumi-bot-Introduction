@@ -5,6 +5,11 @@ body {
   padding: 30px;
   margin: 0;
   background-color: #f8f8f8;
+  background-image: url('./IMG_6063.jpeg'); /* 배경 이미지 경로를 올바르게 설정해주세요! */
+  background-size: cover; /* 이미지를 전체 화면에 맞게 채움 */
+  background-repeat: no-repeat; /* 배경 이미지 반복 안 함 */
+  background-position: center center; /* 배경 이미지 중앙 배치 */
+  min-height: 100vh; /* 최소 높이를 뷰포트 높이로 설정 */
 }
 
 @font-face {
