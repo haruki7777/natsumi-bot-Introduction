@@ -43,8 +43,8 @@
       <li><button class="command-item-button" onclick="showDescription('translate')">/번역</button></li>
       <li><button class="command-item-button" onclick="showDescription('rank')">/도박랭킹</button></li>
       <li><button class="command-item-button" onclick="showDescription('money')">/머니</button></li>
-      <li><button class="command-item-button" onclick="showDescription('sfw')">/sfw</button></li>
-      <li><button class="command-item-button" onclick="showDescription('nsfw')">/nsfw</button></li>
+      <li><button class="command-item-button" onclick="showDescription('sfw')">/나츠미 sfw</button></li>
+      <li><button class="command-item-button" onclick="showDescription('nsfw')">/나츠미 nsfw</button></li>
       <li><button class="command-item-button" onclick="showDescription('intro')">/소개</button></li>
       <li><button class="command-item-button" onclick="showDescription('prefix')">/호출어</button></li>
     </ul>
@@ -85,6 +85,8 @@
       <button id="closeFullScreen" style="padding: 10px 20px; background-color: #ff69b4; color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px;" onclick="document.getElementById('fullScreenOverlay').style.display='none';">닫기</button>
     </div>
   </div>
+
+  <audio id="backgroundMusic" src="/natsumi-bot-Introduction/music/your_music_file.mp3" autoplay loop style="display:none;"></audio>
 
   <script src="/natsumi-bot-Introduction/js/script.js"></script>
 </body>
