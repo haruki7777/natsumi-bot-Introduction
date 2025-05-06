@@ -1,35 +1,10 @@
-function toggleRightMenu() {
-  const rightMenu = document.getElementById('rightMenu');
-  if (rightMenu) {
-    rightMenu.classList.toggle('open');
-  } else {
-    console.error("Error: 'rightMenu' element not found.");
-  }
-}
-
-function toggleCommandList(categoryId) {
-  const commandList = document.getElementById(categoryId + '-commands');
-  const helpContent = document.getElementById('help-content');
-  if (commandList) {
-    commandList.classList.toggle('active');
-    if (helpContent) {
-      if (commandList.classList.contains('active')) {
-        helpContent.classList.remove('active');
-      } else {
-        helpContent.classList.add('active');
-      }
-    }
-  } else {
-    console.error(`Error: Command list with ID '${categoryId}-commands' not found.`);
-  }
-  hideCommandDescription();
-}
-
 function showDescription(command) {
-  const descriptionDiv = document.getElementById('commandDescription');
+  const fullScreenOverlay = document.getElementById('fullScreenOverlay');
+  const fullScreenKoreanCommand = document.getElementById('fullScreenKoreanCommand');
+  const fullScreenText = document.getElementById('fullScreenText');
   const commandDescriptions = {
     'ping': '... 핑? 흥, 네놈의 상태나 확인해보겠다! ... 딱히 걱정하는 건 아니니까!',
-    'serverinfo': '... 이 서버 정보? ... 뭐, 알고 싶다면 알려주지. 딱히 할 일 없는 건 아니고!',
+    'serverinfo': '... 이 서버 정보? ... 뭐, 알고 싶으면 알려주지. 딱히 할 일 없는 건 아니고!',
     'userinfo': '... 네놈의 정보? ... 흥, 별로 궁금하지 않지만... 어쩔 수 없군.',
     'attendance': '... 출석? ... 매일 얼굴이나 비추고 다니는 건가? ... 뭐, 상관 없어.',
     'balance': '... 네놈의 잔액? ... 돈 같은 거나 세고 다니는 한심한 녀석...',
@@ -56,47 +31,50 @@ function showDescription(command) {
     'learn': '... 학습? ... 흥, 얼마나 똑똑해지려나 보지.',
     'reload': '... 리로드? ... 다시 시작하는 건 네 자유지만... 기대는 안 해.',
   };
-  if (commandDescriptions[command]) {
-    let koreanCommand = '';
-    switch (command) {
-      case 'ping': koreanCommand = '/핑'; break;
-      case 'serverinfo': koreanCommand = '/서버정보'; break;
-      case 'userinfo': koreanCommand = '/유저정보'; break;
-      case 'attendance': koreanCommand = '/출석'; break;
-      case 'balance': koreanCommand = '/잔액'; break;
-      case 'help': koreanCommand = '/도움말'; break;
-      case 'natsumi': koreanCommand = '/나츠미'; break;
-      case 'slotmachine': koreanCommand = '/슬롯머신'; break;
-      case 'translate': koreanCommand = '/번역'; break;
-      case 'rank': koreanCommand = '/도박랭킹'; break;
-      case 'money': koreanCommand = '/머니'; break;
-      case 'sfw': koreanCommand = '/나츠미 sfw'; break;
-      case 'nsfw': koreanCommand = '/나츠미 nsfw'; break;
-      case 'intro': koreanCommand = '/소개'; break;
-      case 'prefix': koreanCommand = '/호출어'; break;
-      case 'stealsticker': koreanCommand = '/스틸 스티커'; break;
-      case 'stealemote': koreanCommand = '/스틸 이모지'; break;
-      case 'ban': koreanCommand = '/밴'; break;
-      case 'unban': koreanCommand = '/언밴'; break;
-      case 'mute': koreanCommand = '/뮤트'; break;
-      case 'unmute': koreanCommand = '/언뮤트'; break;
-      case 'kick': koreanCommand = '/킥'; break;
-      case 'clear': koreanCommand = '/청소'; break;
-      case 'nsfwgen': koreanCommand = '/nsfw생성'; break;
-      case 'vote': koreanCommand = '/투표'; break;
-      case 'learn': koreanCommand = '/학습'; break;
-      case 'reload': koreanCommand = '/리로드'; break;
-      default: koreanCommand = '/' + command; break;
-    }
-    descriptionDiv.textContent = `${koreanCommand} - ${commandDescriptions[command]}`;
-    descriptionDiv.style.display = 'block';
+  let koreanCommand = '';
+  switch (command) {
+    case 'ping': koreanCommand = '/핑'; break;
+    case 'serverinfo': koreanCommand = '/서버정보'; break;
+    case 'userinfo': koreanCommand = '/유저정보'; break;
+    case 'attendance': koreanCommand = '/출석'; break;
+    case 'balance': koreanCommand = '/잔액'; break;
+    case 'help': koreanCommand = '/도움말'; break;
+    case 'natsumi': koreanCommand = '/나츠미'; break;
+    case 'slotmachine': koreanCommand = '/슬롯머신'; break;
+    case 'translate': koreanCommand = '/번역'; break;
+    case 'rank': koreanCommand = '/도박랭킹'; break;
+    case 'money': koreanCommand = '/머니'; break;
+    case 'sfw': koreanCommand = '/나츠미 sfw'; break;
+    case 'nsfw': koreanCommand = '/나츠미 nsfw'; break;
+    case 'intro': koreanCommand = '/소개'; break;
+    case 'prefix': koreanCommand = '/호출어'; break;
+    case 'stealsticker': koreanCommand = '/스틸 스티커'; break;
+    case 'stealemote': koreanCommand = '/스틸 이모지'; break;
+    case 'ban': koreanCommand = '/밴'; break;
+    case 'unban': koreanCommand = '/언밴'; break;
+    case 'mute': koreanCommand = '/뮤트'; break;
+    case 'unmute': koreanCommand = '/언뮤트'; break;
+    case 'kick': koreanCommand = '/킥'; break;
+    case 'clear': koreanCommand = '/청소'; break;
+    case 'nsfwgen': koreanCommand = '/nsfw생성'; break;
+    case 'vote': koreanCommand = '/투표'; break;
+    case 'learn': koreanCommand = '/학습'; break;
+    case 'reload': koreanCommand = '/리로드'; break;
+    default: koreanCommand = '/' + command; break;
+  }
+
+  if (fullScreenOverlay && fullScreenKoreanCommand && fullScreenText && commandDescriptions[command]) {
+    fullScreenKoreanCommand.textContent = koreanCommand;
+    fullScreenText.textContent = commandDescriptions[command];
+    fullScreenOverlay.style.display = 'flex';
   } else {
-    descriptionDiv.textContent = '';
-    descriptionDiv.style.display = 'none';
+    console.error("Error: Full screen overlay elements not found or command description missing.");
   }
 }
 
 function hideCommandDescription() {
-  const commandDescriptionDiv = document.getElementById('commandDescription');
-  if (commandDescriptionDiv) commandDescriptionDiv.style.display = 'none';
+  const fullScreenOverlay = document.getElementById('fullScreenOverlay');
+  if (fullScreenOverlay) {
+    fullScreenOverlay.style.display = 'none';
+  }
 }
