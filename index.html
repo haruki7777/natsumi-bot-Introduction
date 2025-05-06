@@ -21,6 +21,8 @@
       display: flex; /* 아이콘과 텍스트를 함께 표시하기 위해 flex 사용 */
       align-items: center; /* 아이콘과 텍스트를 수직으로 가운데 정렬 */
       gap: 8px; /* 아이콘과 텍스트 간 간격 추가 */
+      font-size: 16px; /* 아이콘 크기 설정 */
+      line-height: 0; /* 텍스트 높이로 인한 간격 제거 */
     }
     #playMusicButton.playing {
       background-color: #f03e3e; /* 재생 중일 때 버튼 색 변경 */
@@ -33,6 +35,10 @@
     #playMusicButton.playing::before {
       content: '❚❚'; /* 재생 중일 때는 일시정지 아이콘 표시 */
     }
+    #playMusicButton span {
+      display: none; /* 텍스트 숨김 */
+    }
+
   </style>
 </head>
 <body>
@@ -115,8 +121,8 @@
     </div>
   </div>
 
-  <button id="playMusicButton" class="playing" style="position: fixed; bottom: 20px; left: 20px; z-index: 100;">음악 재생</button>
-  <audio id="backgroundMusic" src="/natsumi-bot-Introduction/music/CHUU - Strawberry Rush (PADO Remix).mp3" loop style="display:none;" muted></audio>
+  <button id="playMusicButton" class="playing" style="position: fixed; bottom: 20px; left: 20px; z-index: 100;"><span>음악 재생</span></button>
+  <audio id="backgroundMusic" src="/natsumi-bot-Introduction/music/CHUU - Strawberry Rush (PADO Remix).mp3" loop style="display:none;"></audio>
 
   <script src="/natsumi-bot-Introduction/js/script.js"></script>
 
@@ -125,16 +131,53 @@
     const button = document.getElementById('playMusicButton');
     let isPlaying = false; // 재생 상태를 추적하는 변수
 
+    // 자동 재생 시도 및 처리
+    function playMusic() {
+      music.muted = false;
+      const playPromise = music.play();
+
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          // 자동 재생 성공
+          isPlaying = true;
+          button.classList.add('playing');
+        }).catch(error => {
+          // 자동 재생 실패 (사용자 상호 작용 필요)
+          console.log("자동 재생 실패:", error);
+          // Safari에서는 muted 상태로 재생 시도 후, 사용자 상호작용 후에 unmute 해야 함
+          if (error.name === "NotAllowedError") {
+            music.muted = true; // muted 상태로 설정
+            button.addEventListener('click', () => {
+              if (!isPlaying) {
+                music.muted = false; // 사용자 상호 작용 후 unmute
+                music.play().then(() => {
+                  isPlaying = true;
+                  button.classList.add('playing');
+                }).catch(err => {
+                  console.error("재생 실패:", err);
+                });
+              }
+            }, { once: true }); // 이벤트 리스너는 한 번만 실행되도록 설정
+          }
+        });
+      }
+    }
+    // 페이지 로드 시 음악 자동 재생
+    window.onload = () => {
+      playMusic();
+    };
+
     button.addEventListener('click', () => {
       if (isPlaying) {
         music.pause();
         button.classList.remove('playing'); // 클래스 제거
       } else {
-        music.muted = false;
-        music.play().catch(e => {
-          console.log("음악 재생 실패: ", e);
-        });
-        button.classList.add('playing'); // 클래스 추가
+        music.play().then(()=>{
+          button.classList.add('playing'); // 클래스 추가
+        }).catch(err=>{
+          console.error("재생 실패",err)
+        })
+
       }
       isPlaying = !isPlaying; // 상태 반전
     });
@@ -144,16 +187,6 @@
       isPlaying = false;
       button.classList.remove('playing');
     });
-
-    // 페이지 로드 시 음악 자동 재생 (선택 사항 - 사용자 경험에 따라 결정)
-    // window.onload = () => {
-    //   music.muted = false;
-    //   music.play().catch(e => {
-    //     console.log("음악 자동 재생 실패:", e);
-    //   });
-    //   isPlaying = true;
-    //   button.classList.add('playing');
-    // };
   </script>
 </body>
 </html>
