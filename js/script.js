@@ -104,3 +104,14 @@ function hideFullScreen() {
     fullScreenOverlay.style.display = 'none';
   }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+  const backgroundMusic = document.getElementById('backgroundMusic');
+  if (backgroundMusic) {
+    backgroundMusic.play().catch(error => {
+      console.error("자동 음악 재생 실패:", error);
+      // 자동 재생이 실패한 경우, 사용자에게 재생 버튼을 제공하거나
+      // 다른 방식으로 음악 재생을 유도할 수 있습니다.
+    });
+  }
+});
