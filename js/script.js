@@ -88,23 +88,11 @@ function showDescription(command) {
       case 'reload': koreanCommand = '/리로드'; break;
       default: koreanCommand = '/' + command; break;
     }
-    const fullScreenOverlay = document.getElementById('fullScreenOverlay');
-    const fullScreenKoreanCommand = document.getElementById('fullScreenKoreanCommand');
-    const fullScreenText = document.getElementById('fullScreenText');
-
-    if (fullScreenOverlay && fullScreenKoreanCommand && fullScreenText) {
-      fullScreenKoreanCommand.textContent = koreanCommand;
-      fullScreenText.textContent = commandDescriptions[command];
-      fullScreenOverlay.style.display = 'flex';
-    } else {
-      console.error("Error: Full screen overlay elements not found.");
-    }
+    descriptionDiv.textContent = `${koreanCommand} - ${commandDescriptions[command]}`;
+    descriptionDiv.style.display = 'block';
   } else {
-    const descriptionDiv = document.getElementById('commandDescription');
-    if (descriptionDiv) {
-      descriptionDiv.textContent = '';
-      descriptionDiv.style.display = 'none';
-    }
+    descriptionDiv.textContent = '';
+    descriptionDiv.style.display = 'none';
   }
 }
 
