@@ -1,22 +1,6 @@
-@font-face {
-  font-family: 'NatsumiFont';
-  src: url('./온글잎 박다현체.ttf') format('truetype');
-}
-body {
-  font-family: 'NatsumiFont', sans-serif;
-  background-image: url('./IMG_6063.jpeg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  color: #333;
-  text-align: center;
-  padding: 30px;
-}
-h1 {
-  color: #ff69b4;
-  font-size: 2.5em;
-}
-.profile {
+/* ... 기존 CSS ... */
+
+.profile-container {
   background: rgba(255, 228, 244, 0.8);
   border: 3px solid #ff69b4;
   border-radius: 15px;
@@ -24,21 +8,35 @@ h1 {
   max-width: 400px;
   margin: 0 auto 30px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  text-align: center; /* 텍스트 중앙 정렬 */
 }
-.profile img {
-  width: 150px;
+
+.profile-image {
+  width: 100px; /* 프로필 이미지 크기 조절 */
   border-radius: 50%;
   border: 2px solid #ff69b4;
+  margin-bottom: 10px; /* 이미지와 텍스트 간 간격 */
 }
-.profile p {
-  margin-top: 10px;
-  font-size: 1.1em;
+
+.profile-container h1 {
+  color: #ff69b4;
+  font-size: 1.8em; /* 제목 크기 조절 */
+  margin-bottom: 15px;
 }
-.invite-button-fixed {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 100; /* 다른 요소 위에 표시 */
+
+.invite-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #ff69b4;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.invite-button:hover {
+  background-color: #ff85c1;
 }
 
 .right-menu-container {
@@ -60,20 +58,58 @@ h1 {
   transform: translateX(0); /* 활성화 시 슬라이드 인 */
 }
 
-.menu-toggle-button {
-  position: fixed;
-  top: 80px;
-  right: 20px;
-  z-index: 99;
-  padding: 10px 15px;
-  background-color: #ff69b4;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+.right-menu-container h2 {
+  color: #ff69b4;
+  margin-bottom: 15px;
+  text-align: center; /* 메뉴 제목 중앙 정렬 */
 }
 
-.menu-toggle-button:hover {
+.right-menu-container .menu-content {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  font-size: 0.9em;
+  text-align: left;
+}
+
+.right-menu-container .menu-content.active {
+  display: block;
+}
+
+.right-menu-container .menu-content h3 {
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.right-menu-container .menu-content ul {
+  padding-left: 20px;
+  margin-bottom: 10px;
+}
+
+.right-menu-container .menu-content li {
+  margin-bottom: 5px;
+}
+
+.right-menu-container .menu-content hr {
+  border: 1px solid #eee;
+  margin: 15px 0;
+}
+
+.right-menu-container .menu-content .invite-link {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #ff69b4;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.right-menu-container .menu-content .invite-link:hover {
   background-color: #ff85c1;
 }
 
