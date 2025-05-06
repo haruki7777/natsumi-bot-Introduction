@@ -11,10 +11,10 @@
     }
     body {
       font-family: 'NatsumiFont', sans-serif;
-      background-image: url('./IMG_6063.jpeg'); /* 배경 이미지 설정 */
-      background-size: cover; /* 배경 이미지를 전체 화면에 맞게 확대/축소 */
-      background-repeat: no-repeat; /* 배경 이미지 반복 안 함 */
-      background-position: center center; /* 배경 이미지 중앙 정렬 */
+      background-image: url('./3575C7AA-8A19-4EF1-8241-71304B784788.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
       color: #333;
       text-align: center;
       padding: 30px;
@@ -24,7 +24,7 @@
       font-size: 2.5em;
     }
     .profile {
-      background: rgba(255, 228, 244, 0.8); /* 기존 배경에 투명도 추가 */
+      background: rgba(255, 228, 244, 0.8);
       border: 3px solid #ff69b4;
       border-radius: 15px;
       padding: 20px;
@@ -41,6 +41,16 @@
       margin-top: 10px;
       font-size: 1.1em;
     }
+    .menu-buttons {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .menu-buttons .button {
+      margin: 0 10px;
+    }
+
     .button {
       display: inline-block;
       padding: 12px 20px;
@@ -63,11 +73,21 @@
       max-width: 400px;
       margin-left: auto;
       margin-right: auto;
-      background: rgba(255, 255, 255, 0.8); /* 기존 배경에 투명도 추가 */
+      background: rgba(255, 255, 255, 0.8);
       border: 2px solid #ff69b4;
       border-radius: 10px;
       padding: 15px;
+      opacity: 0; /* 초기 투명도 0 */
+      transform: translateY(-10px); /* 초기 위치 약간 위로 */
+      transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out; /* 부드러운 애니메이션 */
     }
+
+    .command-box.active {
+      display: block; /* 활성화 시 표시 */
+      opacity: 1; /* 활성화 시 투명도 1 */
+      transform: translateY(0); /* 활성화 시 원래 위치로 */
+    }
+
     .command-box ul {
       padding-left: 20px;
     }
@@ -83,9 +103,11 @@
 
   <a class="button" href="https://discord.com/api/oauth2/authorize?client_id=905355491708903485&permissions=4294443007&scope=bot%20applications.commands">나츠미 초대하기</a>
   <br>
-  <button class="button" onclick="toggleCommands('general')">일반 명령어</button>
-  <button class="button" onclick="toggleCommands('admin')">관리자 기능</button>
-  <button class="button" onclick="toggleCommands('dev')">개발자 기능</button>
+  <div class="menu-buttons">
+    <button class="button" onclick="toggleCommands('general')">일반 명령어</button>
+    <button class="button" onclick="toggleCommands('admin')">관리자 기능</button>
+    <button class="button" onclick="toggleCommands('dev')">개발자 기능</button>
+  </div>
 
   <div id="general" class="command-box">
     <h2>일반 명령어</h2>
@@ -138,9 +160,9 @@
       categories.forEach(cat => {
         const box = document.getElementById(cat);
         if (cat === category) {
-          box.style.display = (box.style.display === 'block') ? 'none' : 'block';
+          box.classList.toggle('active');
         } else {
-          box.style.display = 'none';
+          box.classList.remove('active');
         }
       });
     }
