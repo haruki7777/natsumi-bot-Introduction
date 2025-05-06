@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>나츠미 소개</title>
+  <style>
+    @font-face {
+      font-family: 'NatsumiFont';
+      src: url('./온글잎 박다현체.ttf') format('truetype');
+    }
+    body {
+      font-family: 'NatsumiFont', sans-serif;
+      background: #fff0f5;
+      color: #333;
+      text-align: center;
+      padding: 30px;
+    }
+    h1 {
+      color: #ff69b4;
+      font-size: 2.5em;
+    }
+    .profile {
+      background: #ffe4f4;
+      border: 3px solid #ff69b4;
+      border-radius: 15px;
+      padding: 20px;
+      max-width: 400px;
+      margin: 0 auto 30px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .profile img {
+      width: 150px;
+      border-radius: 50%;
+      border: 2px solid #ff69b4;
+    }
+    .profile p {
+      margin-top: 10px;
+      font-size: 1.1em;
+    }
+    .button {
+      display: inline-block;
+      padding: 12px 20px;
+      background: #ff69b4;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+      margin: 8px;
+      transition: background 0.3s;
+    }
+    .button:hover {
+      background: #ff85c1;
+    }
+    .command-box {
+      display: none;
+      margin-top: 20px;
+      text-align: left;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      background: #fff;
+      border: 2px solid #ff69b4;
+      border-radius: 10px;
+      padding: 15px;
+    }
+    .command-box ul {
+      padding-left: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="profile">
+    <img src="./03A89F6E-AA90-46C2-A83B-EF184BD639AD.png" alt="나츠미 프로필 이미지">
+    <h1>나츠미</h1>
+    <p>나츠미는 츤데레 스타일 디스코드 봇으로, 귀엽게 명령어를 실행해줘요!!</p>
+    <p>뭐야… 나츠미한테 관심 있어? …딱히 기뻐하는 건 아니니까! 착각하지 마, 바보!</p>
+  </div>
+
+  <a class="button" href="https://discord.com/api/oauth2/authorize?client_id=YOUR_CLIENT_ID&permissions=8&scope=bot">나츠미 초대하기</a>
+  <br>
+  <button class="button" onclick="toggleCommands('general')">일반 명령어</button>
+  <button class="button" onclick="toggleCommands('admin')">관리자 기능</button>
+  <button class="button" onclick="toggleCommands('dev')">개발자 기능</button>
+
+  <div id="general" class="command-box">
+    <h2>일반 명령어</h2>
+    <ul>
+      <li>/핑</li>
+      <li>/서버정보</li>
+      <li>/유저정보</li>
+      <li>/출석</li>
+      <li>/잔액</li>
+      <li>/도움말</li>
+      <li>/나츠미</li>
+      <li>/슬롯머신</li>
+      <li>/번역</li>
+      <li>/도박랭킹</li>
+      <li>/머니</li>
+      <li>/나츠미 sfw</li>
+      <li>/나츠미 nsfw</li>
+      <li>/소개</li>
+      <li>/호출어</li>
+    </ul>
+  </div>
+
+  <div id="admin" class="command-box">
+    <h2>관리자 기능</h2>
+    <ul>
+      <li>/스틸 스티커</li>
+      <li>/스틸 이모지</li>
+      <li>/밴</li>
+      <li>/언밴</li>
+      <li>/뮤트</li>
+      <li>/언뮤트</li>
+      <li>/킥</li>
+      <li>/청소</li>
+      <li>/nsfw생성</li>
+      <li>/투표</li>
+    </ul>
+  </div>
+
+  <div id="dev" class="command-box">
+    <h2>개발자 기능</h2>
+    <ul>
+      <li>/학습</li>
+      <li>/리로드</li>
+    </ul>
+  </div>
+
+  <script>
+    function toggleCommands(category) {
+      const categories = ['general', 'admin', 'dev'];
+      categories.forEach(cat => {
+        const box = document.getElementById(cat);
+        if (cat === category) {
+          box.style.display = (box.style.display === 'block') ? 'none' : 'block';
+        } else {
+          box.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
