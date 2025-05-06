@@ -1,4 +1,11 @@
-/* ... 기존 CSS ... */
+body {
+  font-family: sans-serif; /* 기본 폰트 설정 (나중에 필요하면 변경) */
+  color: #333;
+  text-align: center;
+  padding: 30px;
+  margin: 0; /* body 기본 마진 제거 */
+  background-color: #f8f8f8; /* 기본 배경색 설정 (배경 이미지 없을 때) */
+}
 
 .profile-container {
   background: rgba(255, 228, 244, 0.8);
@@ -6,36 +13,62 @@
   border-radius: 15px;
   padding: 20px;
   max-width: 400px;
-  margin: 0 auto 30px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  text-align: center; /* 텍스트 중앙 정렬 */
+  margin: 30px auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .profile-image {
-  width: 100px; /* 프로필 이미지 크기 조절 */
+  width: 100px;
   border-radius: 50%;
   border: 2px solid #ff69b4;
-  margin-bottom: 10px; /* 이미지와 텍스트 간 간격 */
+  margin-bottom: 15px;
 }
 
 .profile-container h1 {
   color: #ff69b4;
-  font-size: 1.8em; /* 제목 크기 조절 */
-  margin-bottom: 15px;
+  font-size: 1.8em;
+  margin-bottom: 20px;
 }
 
 .invite-button {
   display: inline-block;
-  padding: 10px 20px;
+  padding: 12px 24px;
   background-color: #ff69b4;
   color: white;
   text-decoration: none;
-  border-radius: 5px;
+  border-radius: 8px;
   font-weight: bold;
   transition: background-color 0.3s ease;
+  font-size: 1.1em;
 }
 
 .invite-button:hover {
+  background-color: #ff85c1;
+}
+
+.invite-button-fixed {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+}
+
+.menu-toggle-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 99;
+  padding: 8px 12px;
+  background-color: #ff69b4;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.2em;
+  line-height: 1;
+}
+
+.menu-toggle-button:hover {
   background-color: #ff85c1;
 }
 
@@ -46,32 +79,32 @@
   height: 100%;
   background-color: rgba(255, 255, 255, 0.9);
   border-left: 2px solid #ff69b4;
-  width: 250px;
-  transform: translateX(100%); /* 초기 상태에서 오른쪽으로 숨김 */
+  width: 280px;
+  transform: translateX(100%);
   transition: transform 0.3s ease-in-out;
   padding: 20px;
   box-sizing: border-box;
   overflow-y: auto;
+  text-align: left;
 }
 
 .right-menu-container.open {
-  transform: translateX(0); /* 활성화 시 슬라이드 인 */
+  transform: translateX(0);
 }
 
 .right-menu-container h2 {
   color: #ff69b4;
-  margin-bottom: 15px;
-  text-align: center; /* 메뉴 제목 중앙 정렬 */
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 .right-menu-container .menu-content {
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   padding: 15px;
   background-color: #f9f9f9;
   border: 1px solid #eee;
   border-radius: 5px;
   font-size: 0.9em;
-  text-align: left;
 }
 
 .right-menu-container .menu-content.active {
@@ -86,27 +119,29 @@
 
 .right-menu-container .menu-content ul {
   padding-left: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .right-menu-container .menu-content li {
-  margin-bottom: 5px;
+  margin-bottom: 8px;
 }
 
 .right-menu-container .menu-content hr {
   border: 1px solid #eee;
-  margin: 15px 0;
+  margin: 20px 0;
 }
 
 .right-menu-container .menu-content .invite-link {
-  display: inline-block;
-  padding: 10px 20px;
+  display: block;
+  padding: 12px 24px;
   background-color: #ff69b4;
   color: white;
   text-decoration: none;
-  border-radius: 5px;
+  border-radius: 8px;
   font-weight: bold;
   transition: background-color 0.3s ease;
+  text-align: center;
+  font-size: 1.1em;
 }
 
 .right-menu-container .menu-content .invite-link:hover {
@@ -114,7 +149,7 @@
 }
 
 .collapsible {
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .collapsible-button {
@@ -127,7 +162,7 @@
   border-radius: 5px;
   text-align: left;
   cursor: pointer;
-  margin-bottom: 5px; /* 버튼과 내용 사이 간격 */
+  margin-bottom: 6px;
 }
 
 .collapsible-button:hover {
@@ -136,12 +171,11 @@
 
 .collapsible-content {
   display: none;
-  padding: 10px;
+  padding: 12px;
   border: 1px solid #eee;
   border-radius: 5px;
   background-color: #f9f9f9;
   font-size: 0.9em;
-  text-align: left;
 }
 
 .collapsible-content.open {
@@ -149,15 +183,15 @@
 }
 
 .collapsible-content .menu-content {
-  margin-top: 0; /* 내부 내용의 margin 조절 */
+  margin-top: 0;
   border: none;
   padding: 0;
   background-color: transparent;
 }
 
 .collapsible-content .menu-content:not(:last-child) {
-  margin-bottom: 10px; /* 도움말과 소개 사이 간격 */
-  padding-bottom: 10px;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
   border-bottom: 1px solid #eee;
 }
 
@@ -165,7 +199,7 @@
   display: block;
   width: 100%;
   padding: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   background-color: #ffe4f4;
   color: #333;
   border: 1px solid #ff69b4;
@@ -181,7 +215,8 @@
 .command-list {
   display: none;
   padding-left: 15px;
-  margin-top: 5px;
+  margin-top: 6px;
+  margin-bottom: 10px;
 }
 
 .command-list.active {
@@ -205,11 +240,9 @@
 
 .command-description {
   margin-top: 15px;
-  padding: 10px;
+  padding: 12px;
   background-color: #f9f9f9;
   border: 1px solid #eee;
   border-radius: 5px;
   font-size: 0.9em;
-  text-align: left;
-  display: none;
 }
