@@ -277,3 +277,22 @@ body {
 #closeFullScreen:hover {
   background-color: #ff85c1;
 }
+
+/* 음악 재생/일시정지 버튼 스타일 */
+#playMusicButton {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 100;
+  padding: 10px 20px;
+  background-color: #ff69b4;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+#playMusicButton:hover {
+  background-color: #ff85c1;
+}
