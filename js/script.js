@@ -1,4 +1,4 @@
-// 메뉴 토글 함수
+// 오른쪽 메뉴 열고 닫기
 function toggleRightMenu() {
   const rightMenu = document.getElementById('rightMenu');
   if (rightMenu) {
@@ -8,30 +8,24 @@ function toggleRightMenu() {
   }
 }
 
-// 명령어 목록 토글 함수
+// 명령어 카테고리 확장/축소
 function toggleCommandList(categoryId) {
-  const commandList = document.getElementById(categoryId + '-commands');
+  const commandList = document.getElementById(`${categoryId}-commands`);
   const helpContent = document.getElementById('help-content');
   if (commandList) {
     commandList.classList.toggle('active');
-    if (helpContent) {
-      if (commandList.classList.contains('active')) {
-        helpContent.classList.remove('active');
-      } else {
-        helpContent.classList.add('active');
-      }
-    }
+    helpContent?.classList.toggle('active', !commandList.classList.contains('active'));
   } else {
     console.error(`Error: Command list with ID '${categoryId}-commands' not found.`);
   }
 }
 
-// 명령어 설명 표시 함수
+// 명령어 설명 전체 화면 표시
 function showDescription(command) {
   const fullScreenOverlay = document.getElementById('fullScreenOverlay');
   const fullScreenKoreanCommand = document.getElementById('fullScreenKoreanCommand');
   const fullScreenText = document.getElementById('fullScreenText');
-  
+
   const commandDescriptions = {
     'ping': '... 핑? 흥, 네놈의 상태나 확인해보겠다! ... 딱히 걱정하는 건 아니니까!',
     'serverinfo': '... 이 서버 정보? ... 뭐, 알고 싶으면 알려주지. 딱히 할 일 없는 건 아니고!',
@@ -76,24 +70,26 @@ function showDescription(command) {
   if (fullScreenOverlay && fullScreenKoreanCommand && fullScreenText && commandDescriptions[command]) {
     fullScreenKoreanCommand.textContent = koreanCommandMap[command] || '/' + command;
     fullScreenText.textContent = commandDescriptions[command];
-    fullScreenOverlay.style.display = 'flex';
+    fullScreenOverlay.classList.add('active');
   } else {
     console.error("Error: Full screen overlay elements not found or command description missing.");
   }
 }
 
-// 전체 화면 숨기기
+// 전체 설명 닫기
 function hideFullScreen() {
   const fullScreenOverlay = document.getElementById('fullScreenOverlay');
   if (fullScreenOverlay) {
-    fullScreenOverlay.style.display = 'none';
+    fullScreenOverlay.classList.remove('active');
   }
 }
 
-// 음악 재생/일시정지 기능
+// 초기화
 document.addEventListener('DOMContentLoaded', () => {
   const music = document.getElementById('backgroundMusic');
   const button = document.getElementById('playMusicButton');
+  const menuButton = document.querySelector('.menu-toggle-button');
+  const fullScreenCloseButton = document.getElementById('closeFullScreen');
   let isPlaying = false;
 
   function tryAutoPlay() {
@@ -107,6 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // 음악 버튼
   if (button && music) {
     button.addEventListener('click', () => {
       if (isPlaying) {
@@ -120,13 +117,14 @@ document.addEventListener('DOMContentLoaded', () => {
           isPlaying = true;
         }).catch((err) => {
           console.error("음악 재생 실패:", err);
-          alert("브라우저에서 자동 재생이 차단되어 있어요. 설정을 확인해주세요!");
+          alert("브라우저에서 자동 재생이 차단되어 있어요!");
         });
       }
     });
-
     tryAutoPlay();
-  } else {
-    console.error("Error: 재생 버튼 또는 배경 음악 요소를 찾을 수 없습니다.");
   }
+
+  // 메뉴 버튼
+  menuButton?.addEventListener('click', toggleRightMenu);
+  fullScreenCloseButton?.addEventListener('click', hideFullScreen);
 });
