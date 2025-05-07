@@ -7,7 +7,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: url('images/IMG_6063.jpeg') no-repeat center center / cover;
+  background: url('../images/IMG_6063.jpeg') no-repeat center center / cover;
   color: white;
   overflow-x: hidden;
 }
@@ -66,7 +66,7 @@ p {
   position: absolute;
   top: 20px;
   left: 20px;
-  z-index: 3;
+  z-index: 10; /* 메뉴 토글 버튼을 위로 올림 */
 }
 
 .menu-toggle-button:hover {
@@ -129,7 +129,7 @@ p {
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 2;
+  z-index: 5; /* 음악 버튼을 위로 올림 */
 }
 
 #playMusicButton {
@@ -144,7 +144,10 @@ p {
 .overlay {
   display: none;
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.85);
   color: white;
   justify-content: center;
