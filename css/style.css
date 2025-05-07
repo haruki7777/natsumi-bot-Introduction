@@ -1,36 +1,24 @@
 /* 기본 스타일 */
 body {
-  font-family: 'BakDaHyeon', sans-serif; /* 폰트 설정 */
-  color: #333; /* 기본 글자 색상 */
-  text-align: center; /* 텍스트 가운데 정렬 */
-  padding: 30px; /* 내부 여백 */
-  margin: 0; /* 외부 여백 제거 */
-  background-color: #f8f8f8; /* 기본 배경 색상 */
-  background-image: url('https://natsumi.kro.kr/natsumi-bot-Introduction/IMG_6063.jpeg'); /* 절대 경로로 수정 */
-  background-size: cover; /* 배경 이미지를 요소에 맞춰 확대/축소하여 채움 */
-  background-repeat: no-repeat; /* 배경 이미지 반복 안 함 */
-  background-position: center center; /* 배경 이미지 중앙 배치 */
-  min-height: 100vh; /* 최소 높이를 뷰포트 높이로 설정하여 화면 전체에 배경 적용 */
+  font-family: 'BakDaHyeon', sans-serif;
+  color: #333;
+  text-align: center;
+  padding: 30px;
+  margin: 0;
+  background-color: #f8f8f8;
+  background-image: url('images/background.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  min-height: 100vh;
 }
 
 /* 폰트 설정 */
 @font-face {
   font-family: 'BakDaHyeon';
-  src: url('https://natsumi.kro.kr/natsumi-bot-Introduction/온글잎 박다현체.ttf') format('truetype'); /* 절대 경로로 수정 */
+  src: url('https://natsumi.kro.kr/natsumi-bot-Introduction/온글잎 박다현체.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
-}
-
-/* 고정된 초대 버튼 */
-.invite-button-fixed {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 100; /* 다른 요소 위에 표시 */
-}
-
-.invite-button-fixed a:first-child {
-  display: none; /* 텍스트 숨김 */
 }
 
 /* 메뉴 토글 버튼 */
@@ -59,19 +47,19 @@ body {
   top: 0;
   right: 0;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.9); /* 반투명 흰색 배경 */
+  background-color: rgba(255, 255, 255, 0.9);
   border-left: 2px solid #ff69b4;
   width: 280px;
-  transform: translateX(100%); /* 초기 상태에서 숨김 */
-  transition: transform 0.3s ease-in-out; /* 슬라이드 애니메이션 */
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
   padding: 20px;
-  box-sizing: border-box; /* padding, border가 width에 포함되도록 */
-  overflow-y: auto; /* 내용이 많을 경우 스크롤 */
-  text-align: left; /* 텍스트 왼쪽 정렬 */
+  box-sizing: border-box;
+  overflow-y: auto;
+  text-align: left;
 }
 
 .right-menu-container.open {
-  transform: translateX(0); /* 메뉴 보이기 */
+  transform: translateX(0);
 }
 
 .right-menu-container h2 {
@@ -188,13 +176,13 @@ body {
 
 /* 프로필 컨테이너 */
 .profile-container {
-  background: rgba(255, 228, 244, 0.8); /* 반투명 분홍색 배경 */
+  background: rgba(255, 228, 244, 0.8);
   border: 3px solid #ff69b4;
   border-radius: 15px;
   padding: 20px;
   max-width: 400px;
   margin: 30px auto;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* 프로필 이미지 */
@@ -221,7 +209,7 @@ body {
   text-decoration: none;
   border-radius: 8px;
   font-weight: bold;
-  transition: background-color 0.3s ease; /* 호버 시 부드러운 색상 변화 */
+  transition: background-color 0.3s ease;
   font-size: 1.1em;
 }
 
@@ -239,7 +227,7 @@ body {
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
   z-index: 101;
-  display: none; /* 초기 숨김 */
+  display: none;
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -271,28 +259,8 @@ body {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 1em;
 }
 
 #closeFullScreen:hover {
-  background-color: #ff85c1;
-}
-
-/* 음악 재생/일시정지 버튼 스타일 */
-#playMusicButton {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  z-index: 100;
-  padding: 10px 20px;
-  background-color: #ff69b4;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1em;
-}
-
-#playMusicButton:hover {
   background-color: #ff85c1;
 }
