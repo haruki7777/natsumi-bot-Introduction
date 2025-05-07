@@ -66,7 +66,7 @@ p {
   background-color: #333;
   position: absolute;
   top: 20px;
-  left: 20px;
+  right: 20px; /* 오른쪽으로 이동 */
   z-index: 10; /* 메뉴 토글 버튼을 위로 올림 */
 }
 
@@ -131,6 +131,7 @@ p {
   left: 50%;
   transform: translateX(-50%);
   z-index: 5; /* 음악 버튼을 위로 올림 */
+  margin-bottom: 60px; /* 버튼과 화면 하단 사이의 여백 추가 */
 }
 
 #playMusicButton {
