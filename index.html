@@ -13,16 +13,16 @@
   <!-- 음악 재생/일시정지 버튼 -->
   <button id="playMusicButton">음악 일시정지</button>
 
+  <!-- 메뉴 토글 버튼 -->
+  <button class="menu-toggle-button">메뉴</button>
+
   <!-- 프로필 소개 박스 -->
   <div class="profile-container">
-    <img class="profile-image" src="images/natsumi_profile.png" alt="Natsumi 프로필 이미지" />
+    <img class="profile-image" src="images/natsumi-profile.jpg" alt="Natsumi 프로필 이미지" />
     <h1>츠. 츤데레 봇 나츠미라고?!!</h1>
     <p>흥! 네가 필요하다면야... 같이 있어줄 수도 있지 뭐...</p>
     <a class="invite-button" href="https://discord.com/oauth2/authorize?client_id=YOUR_BOT_ID&scope=bot&permissions=BOT_PERMISSIONS" target="_blank">나츠미 초대하기</a>
   </div>
-
-  <!-- 메뉴 토글 버튼 -->
-  <button class="menu-toggle-button">메뉴</button>
 
   <!-- 오른쪽 메뉴 컨테이너 -->
   <div class="right-menu-container" id="rightMenu">
@@ -47,65 +47,6 @@
       <div id="fullScreenKoreanCommand">전체 명령어</div>
       <div id="fullScreenText">설명 내용</div>
       <button id="closeFullScreen">닫기</button>
-    </div>
-  </div>
-
-  <script src="js/script.js"></script>
-</body>
-</html><!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Natsumi Bot</title>
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-  <!-- 배경 음악 -->
-  <audio id="backgroundMusic" src="music/CHUU - Strawberry Rush (PADO Remix).mp3" loop autoplay></audio>
-
-  <!-- 음악 재생/일시정지 버튼 -->
-  <button id="playMusicButton">음악 일시정지</button>
-
-  <!-- 고정 초대 버튼 -->
-  <div class="invite-button-fixed">
-    <a href="https://discord.com/oauth2/authorize?client_id=YOUR_BOT_ID&scope=bot&permissions=BOT_PERMISSIONS" target="_blank">초대하기</a>
-  </div>
-
-  <!-- 프로필 소개 박스 -->
-  <div class="profile-container">
-    <img class="profile-image" src="https://natsumi.kro.kr/natsumi-bot-Introduction/3575C7AA-8A19-4EF1-8241-71304B784788.png" alt="Natsumi 프로필 이미지">
-    <h1>츠. 츤데레 봇 나츠미라고?!!</h1>
-    <p>흥! 네가 필요하다면야... 같이 있어줄 수도 있지 뭐...</p>
-    <a class="invite-button" href="https://discord.com/oauth2/authorize?client_id=YOUR_BOT_ID&scope=bot&permissions=BOT_PERMISSIONS" target="_blank">나츠미 초대하기</a>
-  </div>
-
-  <!-- 메뉴 토글 버튼 -->
-  <button class="menu-toggle-button" onclick="toggleMenu()">메뉴</button>
-
-  <!-- 오른쪽 메뉴 컨테이너 -->
-  <div class="right-menu-container" id="rightMenu">
-    <h2>명령어 목록</h2>
-    <div class="menu-content">
-      <h3>기본 명령어</h3>
-      <ul>
-        <li>
-          <button class="command-category-button" onclick="toggleCommandList('generalCommands')">일반 명령어</button>
-          <div id="generalCommands" class="command-list">
-            <button class="command-item-button">명령어 1</button>
-            <button class="command-item-button">명령어 2</button>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- 전체 화면 오버레이 -->
-  <div id="fullScreenOverlay" class="overlay" onclick="closeOverlay()">
-    <div>
-      <div id="fullScreenKoreanCommand">전체 명령어</div>
-      <div id="fullScreenText">설명 내용</div>
-      <button id="closeFullScreen" onclick="closeOverlay()">닫기</button>
     </div>
   </div>
 
