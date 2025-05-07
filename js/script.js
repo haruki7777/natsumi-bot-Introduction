@@ -8,22 +8,32 @@ document.addEventListener('DOMContentLoaded', () => {
   const fullScreenText = document.getElementById('fullScreenText');
   const fullScreenCloseButton = document.getElementById('closeFullScreen');
 
-  // ✨ 새로 추가할 부분 시작! 카테고리 버튼 클릭 이벤트 처리 ✨
-  const categoryButtons = document.querySelectorAll('.command-category-button');
+  // ✨ 여기부터 카테고리 토글 기능 추가! ✨
+  const categoryButtons = document.querySelectorAll('.command-category-button'); // 모든 카테고리 버튼 선택
+  const commandLists = document.querySelectorAll('.command-list'); // 모든 명령어 목록 선택
 
   categoryButtons.forEach(button => {
     button.addEventListener('click', () => {
-      // 클릭된 버튼의 바로 다음 요소 (명령어 목록) 찾기
-      const commandList = button.nextElementSibling;
+      // 클릭된 버튼의 data-target 속성 값 가져오기 (예: 'generalCommandsList')
+      const targetListId = button.getAttribute('data-target');
+      // 해당 ID를 가진 명령어 목록 요소 찾기
+      const targetList = document.getElementById(targetListId);
 
-      // 만약 다음 요소가 command-list 클래스를 가지고 있다면
-      if (commandList && commandList.classList.contains('command-list')) {
-        // active 클래스를 토글해서 목록을 보이거나 숨김
-        commandList.classList.toggle('active');
+      // 모든 명령어 목록 숨기기 (클릭된 목록 제외)
+      commandLists.forEach(list => {
+          // 클릭된 버튼의 대상 목록이 아닌 다른 목록들만 숨겨!
+          if (list !== targetList) {
+              list.classList.remove('active'); // active 클래스 제거해서 display: none 적용
+          }
+      });
+
+      // 클릭된 버튼의 대상 목록만 보이게 토글!
+      if (targetList) { // 대상 목록이 존재하면
+        targetList.classList.toggle('active'); // active 클래스를 붙였다 뗐다!
       }
     });
   });
-  // ✨ 새로 추가할 부분 끝! ✨
+  // ✨ 카테고리 토글 기능 추가 끝! ✨
 
 
   let isPlaying = false;
@@ -92,6 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 명령어 설명 표시 함수 전역화 (HTML에서 onclick으로 호출하기 위해 window 객체에 붙임)
   window.showDescription = function(command) {
+    // 명령어 설명과 한글 명령어 맵은 하루키가 보내준 대로 그대로 사용!
     const commandDescriptions = {
       'ping': '... 핑? 흥, 네놈의 상태나 확인해보겠다! ... 딱히 걱정하는 건 아니니까!',
       'serverinfo': '... 이 서버 정보? ... 뭐, 알고 싶으면 알려주지. 딱히 할 일 없는 건 아니고!',
@@ -120,6 +131,8 @@ document.addEventListener('DOMContentLoaded', () => {
       'vote': '... 투표? ... 네놈 생각 따위 아무래도 상관 없어.',
       'learn': '... 학습? ... 흥, 얼마나 똑똑해지려나 보지.',
       'reload': '... 리로드? ... 다시 시작하는 건 네 자유지만... 기대는 안 해.',
+      // 혹시 '돈주기' 명령어에 대한 설명이 필요하면 여기에 추가해줘!
+      // 'givemoney': '... 네놈에게 돈을 주라고? ... 흥, 생색내는 건 아니야!'
     };
 
     const koreanCommandMap = {
@@ -131,20 +144,21 @@ document.addEventListener('DOMContentLoaded', () => {
       'stealemote': '/이모지 훔치기', 'ban': '/밴', 'unban': '/언밴',
       'mute': '/뮤트', 'unmute': '/언뮤트', 'kick': '/킥', 'clear': '/청소',
       'nsfwgen': '/nsfw생성', 'vote': '/투표', 'learn': '/학습', 'reload': '/리로드',
+       // '돈주기' 명령어의 한글 이름도 필요하면 여기에 추가해줘!
+      // 'givemoney': '/돈주기',
     };
 
     if (
       fullScreenOverlay &&
       fullScreenKoreanCommand &&
       fullScreenText &&
-      commandDescriptions[command]
+      commandDescriptions[command] // 설명이 있는지 확인
     ) {
-      fullScreenKoreanCommand.textContent = koreanCommandMap[command] || `/${command}`;
-      fullScreenText.textContent = commandDescriptions[command];
-      fullScreenOverlay.classList.add('active');
+      fullScreenKoreanCommand.textContent = koreanCommandMap[command] || `/${command}`; // 한글 이름 없으면 영어 이름 그대로
+      fullScreenText.textContent = commandDescriptions[command]; // 설명 표시
+      fullScreenOverlay.classList.add('active'); // 오버레이 보이기
     } else {
-      console.error(`명령어 설명 표시 오류 또는 요소 누락: ${command}`); // 에러 메시지 수정
-      // 필요한 요소가 없을 경우 콘솔에 경고 메시지 출력
+      console.error(`명령어 설명 표시 오류 또는 요소 누락: ${command}`);
       if (!fullScreenOverlay) console.warn("fullScreenOverlay 요소를 찾을 수 없습니다.");
       if (!fullScreenKoreanCommand) console.warn("fullScreenKoreanCommand 요소를 찾을 수 없습니다.");
       if (!fullScreenText) console.warn("fullScreenText 요소를 찾을 수 없습니다.");
