@@ -1,4 +1,8 @@
 /* 기본 스타일 */
+* {
+  box-sizing: border-box; /* 패딩과 보더가 너비와 높이에 포함되도록 설정해서 침범 방지! */
+}
+
 body {
   font-family: 'Arial', sans-serif;
   margin: 0;
@@ -9,7 +13,7 @@ body {
   align-items: center;
   background: url('../images/IMG_6063.jpeg') no-repeat center center / cover;
   color: white;
-  overflow-x: hidden;
+  overflow-x: hidden; /* 가로 스크롤바 숨겨서 침범 문제 해결! */
   flex-direction: column;
 }
 
@@ -127,10 +131,10 @@ p {
 /* 음악 재생 버튼 */
 #musicControlContainer {
   position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 5; /* 음악 버튼을 위로 올림 */
+  bottom: 20px; /* 아래쪽에서 20px */
+  left: 20px; /* ✨ 요기가 왼쪽으로 옮긴 부분! 왼쪽에서 20px 떨어지게 했어! */
+  z-index: 5;
+  /* transform: translateX(-50%); ✨ 요건 가운데 정렬할 때 쓰는 거라 빼줬어! */
 }
 
 #playMusicButton {
@@ -195,7 +199,8 @@ p {
 
   /* 모바일에서 음악 재생 버튼 크기 조정 */
   #musicControlContainer {
-    bottom: 10px;
+    bottom: 10px; /* 모바일에서는 아래에서 10px만 떨어지게 */
+    left: 10px; /* ✨ 모바일에서도 왼쪽에서 10px만 떨어지게! */
   }
 
   /* 음악 재생 버튼 크기 조정 */
