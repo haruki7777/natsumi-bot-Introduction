@@ -8,22 +8,45 @@ document.addEventListener('DOMContentLoaded', () => {
   const fullScreenText = document.getElementById('fullScreenText');
   const fullScreenCloseButton = document.getElementById('closeFullScreen');
 
+  // ✨ 새로 추가할 부분 시작! 카테고리 버튼 클릭 이벤트 처리 ✨
+  const categoryButtons = document.querySelectorAll('.command-category-button');
+
+  categoryButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      // 클릭된 버튼의 바로 다음 요소 (명령어 목록) 찾기
+      const commandList = button.nextElementSibling;
+
+      // 만약 다음 요소가 command-list 클래스를 가지고 있다면
+      if (commandList && commandList.classList.contains('command-list')) {
+        // active 클래스를 토글해서 목록을 보이거나 숨김
+        commandList.classList.toggle('active');
+      }
+    });
+  });
+  // ✨ 새로 추가할 부분 끝! ✨
+
+
   let isPlaying = false;
 
   // 자동 재생 시도
   function tryAutoPlay() {
+    // music 객체가 null이 아닌지 확인
+    if (!music) return; // music 요소가 없으면 함수 종료
+
     music.muted = false;
     music.play().then(() => {
       isPlaying = true;
-      musicButton.classList.add('playing');
+      // musicButton 객체가 null이 아닌지 확인
+      if (musicButton) musicButton.classList.add('playing');
     }).catch((error) => {
       console.warn("자동 재생 실패:", error);
-      music.muted = true;
+      // music 객체가 null이 아닌지 확인
+      if (music) music.muted = true;
     });
   }
 
   // 음악 재생/일시정지 토글
-  if (music && musicButton) {
+  if (music && musicButton) { // music과 musicButton 둘 다 있을 때만 이벤트 추가
     musicButton.addEventListener('click', () => {
       if (isPlaying) {
         music.pause();
@@ -36,29 +59,38 @@ document.addEventListener('DOMContentLoaded', () => {
           isPlaying = true;
         }).catch((err) => {
           console.error("음악 재생 실패:", err);
-          alert("브라우저에서 자동 재생이 차단되어 있어요!");
+          alert("브라우저에서 자동 재생이 차단되어 있어요! 사용자의 직접적인 동작(클릭 등)이 필요할 수 있습니다."); // 알림 메시지 좀 더 친절하게 수정
         });
       }
     });
 
+    // 페이지 로드 시 자동 재생 시도 (사용자 설정에 따라 다를 수 있음)
     tryAutoPlay();
+  } else {
+      console.warn("음악 재생 요소(backgroundMusic 또는 playMusicButton)를 찾을 수 없습니다.");
   }
 
+
   // 메뉴 열고 닫기
-  if (menuButton && rightMenu) {
+  if (menuButton && rightMenu) { // 메뉴 버튼과 메뉴 영역 둘 다 있을 때만 이벤트 추가
     menuButton.addEventListener('click', () => {
       rightMenu.classList.toggle('open');
     });
+  } else {
+      console.warn("메뉴 요소(menuToggleButton 또는 rightMenu)를 찾을 수 없습니다.");
   }
 
   // 전체 설명 닫기
-  if (fullScreenCloseButton && fullScreenOverlay) {
+  if (fullScreenCloseButton && fullScreenOverlay) { // 닫기 버튼과 오버레이 둘 다 있을 때만 이벤트 추가
     fullScreenCloseButton.addEventListener('click', () => {
       fullScreenOverlay.classList.remove('active');
     });
+  } else {
+       console.warn("오버레이 요소(closeFullScreen 또는 fullScreenOverlay)를 찾을 수 없습니다.");
   }
 
-  // 명령어 설명 표시 함수 전역화
+
+  // 명령어 설명 표시 함수 전역화 (HTML에서 onclick으로 호출하기 위해 window 객체에 붙임)
   window.showDescription = function(command) {
     const commandDescriptions = {
       'ping': '... 핑? 흥, 네놈의 상태나 확인해보겠다! ... 딱히 걱정하는 건 아니니까!',
@@ -111,7 +143,12 @@ document.addEventListener('DOMContentLoaded', () => {
       fullScreenText.textContent = commandDescriptions[command];
       fullScreenOverlay.classList.add('active');
     } else {
-      console.error(`명령어 설명 표시 오류: ${command}`);
+      console.error(`명령어 설명 표시 오류 또는 요소 누락: ${command}`); // 에러 메시지 수정
+      // 필요한 요소가 없을 경우 콘솔에 경고 메시지 출력
+      if (!fullScreenOverlay) console.warn("fullScreenOverlay 요소를 찾을 수 없습니다.");
+      if (!fullScreenKoreanCommand) console.warn("fullScreenKoreanCommand 요소를 찾을 수 없습니다.");
+      if (!fullScreenText) console.warn("fullScreenText 요소를 찾을 수 없습니다.");
+      if (!commandDescriptions[command]) console.warn(`명령어 '${command}'에 대한 설명이 없습니다.`);
     }
   };
 });
