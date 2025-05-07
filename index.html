@@ -8,11 +8,22 @@
 </head>
 <body>
   <!-- 배경 음악 -->
-  <audio id="backgroundMusic" src="music/CHUU - Strawberry Rush (PADO Remix).mp3" loop></audio>
+  <audio id="backgroundMusic" src="music/CHUU - Strawberry Rush (PADO Remix).mp3" loop autoplay></audio>
+
+  <!-- 음악 재생/일시정지 버튼 -->
+  <button id="playMusicButton">음악 일시정지</button>
 
   <!-- 고정 초대 버튼 -->
   <div class="invite-button-fixed">
     <a href="https://discord.com/oauth2/authorize?client_id=YOUR_BOT_ID&scope=bot&permissions=BOT_PERMISSIONS" target="_blank">초대하기</a>
+  </div>
+
+  <!-- 프로필 소개 박스 -->
+  <div class="profile-container">
+    <img class="profile-image" src="https://natsumi.kro.kr/natsumi-bot-Introduction/natsumi-profile.jpg" alt="Natsumi 프로필 이미지">
+    <h1>츠. 츤데레 봇 나츠미라고?!!</h1>
+    <p>흥! 네가 필요하다면야... 같이 있어줄 수도 있지 뭐...</p>
+    <a class="invite-button" href="https://discord.com/oauth2/authorize?client_id=YOUR_BOT_ID&scope=bot&permissions=BOT_PERMISSIONS" target="_blank">나츠미 초대하기</a>
   </div>
 
   <!-- 메뉴 토글 버튼 -->
