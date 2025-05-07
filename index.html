@@ -5,102 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>나츠미 소개</title>
   <link rel="stylesheet" href="./css/style.css" />
-  <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #fefefe;
-    }
-    .profile-container {
-      text-align: center;
-      margin-top: 50px;
-    }
-    .profile-image {
-      max-width: 200px;
-      border-radius: 50%;
-    }
-    .invite-button {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 10px 20px;
-      background-color: #ff69b4;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      font-size: 18px;
-    }
-    #playMusicButton {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      z-index: 100;
-      padding: 10px 20px;
-      background-color: #ff69b4;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-    #playMusicButton.playing {
-      background-color: #f03e3e;
-    }
-    #playMusicButton::before {
-      content: '▶';
-    }
-    #playMusicButton.playing::before {
-      content: '❚❚';
-    }
-    .right-menu-container {
-      position: fixed;
-      top: 0;
-      right: -300px;
-      width: 300px;
-      height: 100%;
-      background-color: #fff;
-      box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
-      transition: right 0.3s ease;
-      z-index: 101;
-      padding: 20px;
-    }
-    .right-menu-container.open {
-      right: 0;
-    }
-    #help-content ul {
-      list-style: none;
-      padding: 0;
-    }
-    #help-content ul li {
-      margin: 10px 0;
-      cursor: pointer;
-      color: #333;
-    }
-    #fullScreenOverlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: rgba(0, 0, 0, 0.85);
-      color: white;
-      z-index: 102;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-    }
-    #fullScreenKoreanCommand {
-      font-size: 24px;
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
-    #fullScreenText {
-      font-size: 18px;
-      max-width: 80%;
-      text-align: center;
-    }
-  </style>
+  <!-- ... 동일한 style 생략 가능 ... -->
 </head>
 <body>
   <div class="profile-container">
@@ -112,24 +17,16 @@
   <button id="playMusicButton"><span>음악 재생</span></button>
   <audio id="backgroundMusic" src="./music/CHUU - Strawberry Rush (PADO Remix).mp3" loop></audio>
 
-  <!-- 메뉴 열기 버튼 -->
   <button onclick="toggleRightMenu()" style="position: fixed; top: 20px; right: 20px; z-index: 102;">메뉴 열기</button>
 
-  <!-- 오른쪽 메뉴 -->
   <div id="rightMenu" class="right-menu-container">
     <h2>명령어 목록</h2>
     <div id="help-content">
-      <ul>
-        <li onclick="showDescription('ping')">/핑</li>
-        <li onclick="showDescription('userinfo')">/유저정보</li>
-        <li onclick="showDescription('help')">/도움말</li>
-        <!-- 필요한 명령어 더 추가 가능 -->
-      </ul>
+      <ul id="commandList"></ul>
     </div>
   </div>
 
-  <!-- 전체 설명 오버레이 -->
-  <div id="fullScreenOverlay" style="display: none; display: flex;">
+  <div id="fullScreenOverlay">
     <div id="fullScreenKoreanCommand"></div>
     <div id="fullScreenText"></div>
     <button onclick="hideFullScreen()" style="margin-top: 20px;">닫기</button>
