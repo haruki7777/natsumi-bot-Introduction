@@ -14,8 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // 틀고 싶은 음악 파일 경로들을 배열로 만들어! 여기에 음악 파일 경로를 추가하면 돼!
   const playlist = [
     'music/CHUU - Strawberry Rush (PADO Remix).mp3', // 첫 번째 곡
-    'music/your_second_song.mp3', // ✨ 두 번째 곡 경로를 여기에! ✨
-    'music/your_third_song.mp3' // ✨ 세 번째 곡 경로를 여기에! ✨
+    'music/you are my curse  nyamura.mp3', // ✨ 두 번째 곡 경로를 여기에! ✨
+    'music/𝐉𝐏𝐎𝐏 𝐏𝐥𝐚𝐲𝐥𝐢𝐬𝐭  희비극.mp3' // ✨ 세 번째 곡 경로를 여기에! ✨
     // 앞으로 더 추가하고 싶으면 쉼표(,) 찍고 'music/새로운_곡.mp3' 이런 식으로 계속 추가하면 돼!
   ];
 
