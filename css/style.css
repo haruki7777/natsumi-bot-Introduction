@@ -10,6 +10,7 @@ body {
   background: url('../images/IMG_6063.jpeg') no-repeat center center / cover;
   color: white;
   overflow-x: hidden;
+  flex-direction: column;
 }
 
 /* 프로필 섹션 */
@@ -171,15 +172,18 @@ p {
 
 /* 반응형 */
 @media (max-width: 768px) {
+  /* 프로필 영역을 작은 화면에서 더 작게 조정 */
   .profile-container {
     width: 90%;
   }
 
+  /* 메뉴 토글 버튼 크기 조정 */
   .menu-toggle-button {
     padding: 8px 16px;
     font-size: 0.9em;
   }
 
+  /* 오른쪽 메뉴가 모바일에서 화면에 안 겹치게 하기 */
   .right-menu-container {
     width: 100%;
     right: -100%; /* 모바일에서는 메뉴가 완전히 숨겨져야 함 */
@@ -189,13 +193,14 @@ p {
     right: 0;
   }
 
-  #playMusicButton {
-    font-size: 0.9em;
-    padding: 8px 16px;
-  }
-
   /* 모바일에서 음악 재생 버튼 크기 조정 */
   #musicControlContainer {
     bottom: 10px;
+  }
+
+  /* 음악 재생 버튼 크기 조정 */
+  #playMusicButton {
+    font-size: 0.9em;
+    padding: 8px 16px;
   }
 }
