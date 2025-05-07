@@ -1,224 +1,147 @@
 /* 기본 스타일 */
 body {
-  font-family: 'BakDaHyeon', sans-serif;
-  color: #333;
-  text-align: center;
-  padding: 30px;
+  font-family: 'Arial', sans-serif;
   margin: 0;
-  background-color: #f8f8f8;
-  background-image: url('images/IMG_6063.jpeg');
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url('images/background.jpg');
   background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  min-height: 100vh;
-}
-
-/* 폰트 설정 */
-@font-face {
-  font-family: 'BakDaHyeon';
-  src: url('https://natsumi.kro.kr/natsumi-bot-Introduction/온글잎 박다현체.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-/* 메뉴 토글 버튼 */
-.menu-toggle-button {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 99;
-  padding: 8px 12px;
-  background-color: #ff69b4;
+  background-position: center;
   color: white;
-  border: none;
-  border-radius: 8px;
+}
+
+/* 프로필 이미지와 텍스트 */
+.profile-container {
+  text-align: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+  position: relative;
+}
+
+.profile-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+h1 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 1.1em;
+  margin-bottom: 20px;
+}
+
+.invite-button {
+  background-color: #ff4081;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.invite-button:hover {
+  background-color: #f50057;
+}
+
+/* 메뉴와 버튼 */
+.menu-toggle-button {
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
   cursor: pointer;
-  font-size: 1.2em;
-  line-height: 1;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
 }
 
 .menu-toggle-button:hover {
-  background-color: #ff85c1;
+  background-color: #555;
 }
 
-/* 오른쪽 메뉴 컨테이너 */
 .right-menu-container {
-  position: fixed;
+  position: absolute;
+  right: -250px;
   top: 0;
-  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  width: 250px;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.9);
-  border-left: 2px solid #ff69b4;
-  width: 280px;
-  transform: translateX(100%);
-  transition: transform 0.3s ease-in-out;
+  transition: right 0.3s ease-in-out;
   padding: 20px;
-  box-sizing: border-box;
-  overflow-y: auto;
-  text-align: left;
 }
 
 .right-menu-container.open {
-  transform: translateX(0);
+  right: 0;
 }
 
-.right-menu-container h2 {
-  color: #ff69b4;
+h2 {
+  font-size: 1.5em;
   margin-bottom: 20px;
-  text-align: center;
 }
 
-.right-menu-container .menu-content {
-  margin-bottom: 25px;
-  padding: 15px;
-  background-color: #f9f9f9;
-  border: 1px solid #eee;
-  border-radius: 5px;
-  font-size: 0.9em;
-}
-
-.right-menu-container .menu-content.active {
-  display: block;
-}
-
-.right-menu-container .menu-content h3 {
-  color: #333;
-  margin-top: 0;
-  margin-bottom: 10px;
-}
-
-.right-menu-container .menu-content ul {
-  padding-left: 20px;
-  margin-bottom: 15px;
-}
-
-.right-menu-container .menu-content li {
-  margin-bottom: 8px;
-}
-
-.right-menu-container .menu-content hr {
-  border: 1px solid #eee;
-  margin: 20px 0;
-}
-
-.right-menu-container .menu-content .invite-link {
-  display: block;
-  padding: 12px 24px;
-  background-color: #ff69b4;
-  color: white;
-  text-decoration: none;
-  border-radius: 8px;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-  text-align: center;
-  font-size: 1.1em;
-}
-
-.right-menu-container .menu-content .invite-link:hover {
-  background-color: #ff85c1;
-}
-
-/* 명령어 카테고리 버튼 */
 .command-category-button {
-  display: block;
-  width: 100%;
+  background: #ff4081;
+  color: white;
   padding: 10px;
-  margin-bottom: 8px;
-  background-color: #ffe4f4;
-  color: #333;
-  border: 1px solid #ff69b4;
-  border-radius: 5px;
+  width: 100%;
   text-align: left;
+  border: none;
   cursor: pointer;
 }
 
-.command-category-button:hover {
-  background-color: #fff0f5;
-}
-
-/* 명령어 목록 */
 .command-list {
   display: none;
-  padding-left: 15px;
-  margin-top: 6px;
-  margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 .command-list.active {
   display: block;
 }
 
-/* 명령어 아이템 버튼 */
 .command-item-button {
-  display: block;
-  width: 100%;
-  padding: 8px 0;
-  background: none;
-  border: none;
-  text-align: left;
-  cursor: pointer;
-  color: #555;
-}
-
-.command-item-button:hover {
-  color: #ff69b4;
-}
-
-/* 명령어 설명 */
-.command-description {
-  margin-top: 15px;
-  padding: 12px;
-  background-color: #f9f9f9;
-  border: 1px solid #eee;
-  border-radius: 5px;
-  font-size: 0.9em;
-}
-
-/* 프로필 컨테이너 */
-.profile-container {
-  background: rgba(255, 228, 244, 0.8);
-  border: 3px solid #ff69b4;
-  border-radius: 15px;
-  padding: 20px;
-  max-width: 400px;
-  margin: 30px auto;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* 프로필 이미지 */
-.profile-image {
-  width: 100px;
-  border-radius: 50%;
-  border: 2px solid #ff69b4;
-  margin-bottom: 15px;
-}
-
-/* 프로필 제목 */
-.profile-container h1 {
-  color: #ff69b4;
-  font-size: 1.8em;
-  margin-bottom: 20px;
-}
-
-/* 초대하기 버튼 (프로필 하단) */
-.invite-button {
-  display: inline-block;
-  padding: 12px 24px;
-  background-color: #ff69b4;
+  background: #555;
   color: white;
-  text-decoration: none;
-  border-radius: 8px;
-  font-weight: bold;
+  padding: 8px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  cursor: pointer;
+}
+
+/* 음악 재생 버튼 */
+#musicControlContainer {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#playMusicButton {
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
   transition: background-color 0.3s ease;
-  font-size: 1.1em;
 }
 
-.invite-button:hover {
-  background-color: #ff85c1;
+#playMusicButton.playing {
+  background-color: #f00;
 }
 
-/* 전체 화면 오버레이 스타일 */
-#fullScreenOverlay {
+/* 전체 화면 오버레이 */
+.overlay {
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -226,41 +149,20 @@ body {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
-  z-index: 101;
-  display: none;
-  justify-content: center;
   align-items: center;
-  flex-direction: column;
-}
-
-#fullScreenOverlay > div {
-  background-color: #333;
-  padding: 20px;
-  border-radius: 8px;
-  max-width: 80%;
-  text-align: center;
-}
-
-#fullScreenKoreanCommand {
-  margin-bottom: 10px;
-  font-size: 1.5em;
-  font-weight: bold;
-}
-
-#fullScreenText {
-  font-size: 1.2em;
-  margin-bottom: 20px;
+  justify-content: center;
+  z-index: 9999;
 }
 
 #closeFullScreen {
-  padding: 10px 20px;
-  background-color: #ff69b4;
+  background-color: #ff4081;
   color: white;
-  border: none;
-  border-radius: 5px;
+  padding: 10px 20px;
   cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
 }
 
 #closeFullScreen:hover {
-  background-color: #ff85c1;
+  background-color: #f50057;
 }
