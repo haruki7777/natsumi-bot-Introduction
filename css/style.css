@@ -131,7 +131,6 @@ p {
   left: 50%;
   transform: translateX(-50%);
   z-index: 5; /* 음악 버튼을 위로 올림 */
-  margin-bottom: 60px; /* 버튼과 화면 하단 사이의 여백 추가 */
 }
 
 #playMusicButton {
