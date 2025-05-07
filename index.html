@@ -1,64 +1,49 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>나츠미 소개</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Natsumi Bot</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <!-- 배경 음악 -->
+  <audio id="backgroundMusic" src="music/CHUU - Strawberry Rush (PADO Remix).mp3" loop></audio>
+
   <!-- 고정 초대 버튼 -->
   <div class="invite-button-fixed">
-    <a href="https://discord.com/oauth2/authorize?client_id=YOUR_CLIENT_ID&scope=bot">초대하기</a>
+    <a href="https://discord.com/oauth2/authorize?client_id=YOUR_BOT_ID&scope=bot&permissions=BOT_PERMISSIONS" target="_blank">초대하기</a>
   </div>
 
   <!-- 메뉴 토글 버튼 -->
   <button class="menu-toggle-button" onclick="toggleMenu()">메뉴</button>
 
-  <!-- 오른쪽 슬라이딩 메뉴 -->
+  <!-- 오른쪽 메뉴 컨테이너 -->
   <div class="right-menu-container" id="rightMenu">
     <h2>명령어 목록</h2>
-
     <div class="menu-content">
-      <button class="command-category-button" onclick="toggleCategory('basic')">기본 명령어</button>
-      <div class="command-list" id="basic">
-        <button class="command-item-button" onclick="showDescription('기본명령어', '이건 기본 명령어야!')">/도움말</button>
-        <button class="command-item-button" onclick="showDescription('기본명령어', '봇 정보를 보여주는 명령어야!')">/정보</button>
-      </div>
-
-      <button class="command-category-button" onclick="toggleCategory('music')">음악 명령어</button>
-      <div class="command-list" id="music">
-        <button class="command-item-button" onclick="showDescription('음악명령어', '음악을 재생하는 명령어야.')">/재생</button>
-        <button class="command-item-button" onclick="showDescription('음악명령어', '음악을 멈춰.')">/정지</button>
-      </div>
-    </div>
-
-    <div class="menu-content">
-      <a href="https://discord.com/oauth2/authorize?client_id=YOUR_CLIENT_ID&scope=bot" class="invite-link">디스코드 봇 초대하기</a>
+      <h3>기본 명령어</h3>
+      <ul>
+        <li>
+          <button class="command-category-button" onclick="toggleCommandList('generalCommands')">일반 명령어</button>
+          <div id="generalCommands" class="command-list">
+            <button class="command-item-button">명령어 1</button>
+            <button class="command-item-button">명령어 2</button>
+          </div>
+        </li>
+      </ul>
     </div>
   </div>
 
-  <!-- 프로필 섹션 -->
-  <div class="profile-container">
-    <img src="https://natsumi.kro.kr/natsumi-bot-Introduction/IMG_6063.jpeg" alt="Natsumi Profile" class="profile-image" />
-    <h1>츠. 츤데레 나츠미야!</h1>
-    <p>너, 뭐 보고 있는 거야? 이건 그냥 소개일 뿐이니까!</p>
-    <a href="https://discord.com/oauth2/authorize?client_id=YOUR_CLIENT_ID&scope=bot" class="invite-button">초대하기</a>
-  </div>
-
-  <!-- 전체화면 명령어 설명 -->
-  <div id="fullScreenOverlay">
+  <!-- 전체 화면 오버레이 -->
+  <div id="fullScreenOverlay" class="overlay" onclick="closeOverlay()">
     <div>
-      <div id="fullScreenKoreanCommand"></div>
-      <div id="fullScreenText"></div>
-      <button id="closeFullScreen" onclick="closeDescription()">닫기</button>
+      <div id="fullScreenKoreanCommand">전체 명령어</div>
+      <div id="fullScreenText">설명 내용</div>
+      <button id="closeFullScreen" onclick="closeOverlay()">닫기</button>
     </div>
   </div>
 
-  <!-- 음악 재생 버튼 -->
-  <button id="playMusicButton" onclick="toggleMusic()">음악 재생</button>
-
-  <!-- 자바스크립트 -->
   <script src="js/script.js"></script>
 </body>
 </html>
