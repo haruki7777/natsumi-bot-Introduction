@@ -57,40 +57,20 @@ function showDescription(command) {
     'learn': '... 학습? ... 흥, 얼마나 똑똑해지려나 보지.',
     'reload': '... 리로드? ... 다시 시작하는 건 네 자유지만... 기대는 안 해.',
   };
-  let koreanCommand = '';
-  switch (command) {
-    case 'ping': koreanCommand = '/핑'; break;
-    case 'serverinfo': koreanCommand = '/서버정보'; break;
-    case 'userinfo': koreanCommand = '/유저정보'; break;
-    case 'attendance': koreanCommand = '/출석'; break;
-    case 'balance': koreanCommand = '/잔액'; break;
-    case 'help': koreanCommand = '/도움말'; break;
-    case 'natsumi': koreanCommand = '/나츠미'; break;
-    case 'slotmachine': koreanCommand = '/슬롯머신'; break;
-    case 'translate': koreanCommand = '/번역'; break;
-    case 'rank': koreanCommand = '/도박랭킹'; break;
-    case 'money': koreanCommand = '/머니'; break;
-    case 'sfw': koreanCommand = '/sfw'; break;
-    case 'nsfw': koreanCommand = '/nsfw'; break;
-    case 'intro': koreanCommand = '/소개'; break;
-    case 'prefix': koreanCommand = '/호출어'; break;
-    case 'stealsticker': koreanCommand = '/스틸 스티커'; break;
-    case 'stealemote': koreanCommand = '/스틸 이모지'; break;
-    case 'ban': koreanCommand = '/밴'; break;
-    case 'unban': koreanCommand = '/언밴'; break;
-    case 'mute': koreanCommand = '/뮤트'; break;
-    case 'unmute': koreanCommand = '/언뮤트'; break;
-    case 'kick': koreanCommand = '/킥'; break;
-    case 'clear': koreanCommand = '/청소'; break;
-    case 'nsfwgen': koreanCommand = '/nsfw생성'; break;
-    case 'vote': koreanCommand = '/투표'; break;
-    case 'learn': koreanCommand = '/학습'; break;
-    case 'reload': koreanCommand = '/리로드'; break;
-    default: koreanCommand = '/' + command; break;
-  }
+
+  const koreanCommandMap = {
+    'ping': '/핑', 'serverinfo': '/서버정보', 'userinfo': '/유저정보',
+    'attendance': '/출석', 'balance': '/잔액', 'help': '/도움말',
+    'natsumi': '/나츠미', 'slotmachine': '/슬롯머신', 'translate': '/번역',
+    'rank': '/도박랭킹', 'money': '/머니', 'sfw': '/sfw', 'nsfw': '/nsfw',
+    'intro': '/소개', 'prefix': '/호출어', 'stealsticker': '/스티커 훔치기',
+    'stealemote': '/이모지 훔치기', 'ban': '/밴', 'unban': '/언밴',
+    'mute': '/뮤트', 'unmute': '/언뮤트', 'kick': '/킥', 'clear': '/청소',
+    'nsfwgen': '/nsfw생성', 'vote': '/투표', 'learn': '/학습', 'reload': '/리로드',
+  };
 
   if (fullScreenOverlay && fullScreenKoreanCommand && fullScreenText && commandDescriptions[command]) {
-    fullScreenKoreanCommand.textContent = koreanCommand;
+    fullScreenKoreanCommand.textContent = koreanCommandMap[command] || '/' + command;
     fullScreenText.textContent = commandDescriptions[command];
     fullScreenOverlay.style.display = 'flex';
   } else {
@@ -105,23 +85,41 @@ function hideFullScreen() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-  const backgroundMusic = document.getElementById('backgroundMusic');
-  const playButton = document.getElementById('playMusicButton');
+document.addEventListener('DOMContentLoaded', () => {
+  const music = document.getElementById('backgroundMusic');
+  const button = document.getElementById('playMusicButton');
+  let isPlaying = false;
 
-  if (playButton && backgroundMusic) {
-    playButton.addEventListener('click', function() {
-      if (backgroundMusic.paused) {
-        backgroundMusic.play().catch(error => {
-          console.error("음악 재생 실패:", error);
-          alert("음악 재생에 실패했습니다. 브라우저 설정을 확인해주세요.");
-        });
-        playButton.textContent = "음악 일시정지";
+  function tryAutoPlay() {
+    music.muted = false;
+    music.play().then(() => {
+      isPlaying = true;
+      button.classList.add('playing');
+    }).catch((error) => {
+      console.warn("자동 재생 실패:", error);
+      music.muted = true;
+    });
+  }
+
+  if (button && music) {
+    button.addEventListener('click', () => {
+      if (isPlaying) {
+        music.pause();
+        button.classList.remove('playing');
+        isPlaying = false;
       } else {
-        backgroundMusic.pause();
-        playButton.textContent = "음악 재생";
+        music.muted = false;
+        music.play().then(() => {
+          button.classList.add('playing');
+          isPlaying = true;
+        }).catch((err) => {
+          console.error("음악 재생 실패:", err);
+          alert("브라우저에서 자동 재생이 차단되어 있어요. 설정을 확인해주세요!");
+        });
       }
     });
+
+    tryAutoPlay();
   } else {
     console.error("Error: 재생 버튼 또는 배경 음악 요소를 찾을 수 없습니다.");
   }
