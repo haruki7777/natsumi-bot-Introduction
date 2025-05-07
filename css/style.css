@@ -6,7 +6,7 @@ body {
   padding: 30px; /* 내부 여백 */
   margin: 0; /* 외부 여백 제거 */
   background-color: #f8f8f8; /* 기본 배경 색상 */
-  background-image: url('/natsumi-bot-Introduction/IMG_6063.jpeg'); /* 배경 이미지 경로 (웹사이트 루트 기준) */
+  background-image: url('https://natsumi.kro.kr/natsumi-bot-Introduction/IMG_6063.jpeg'); /* 절대 경로로 수정 */
   background-size: cover; /* 배경 이미지를 요소에 맞춰 확대/축소하여 채움 */
   background-repeat: no-repeat; /* 배경 이미지 반복 안 함 */
   background-position: center center; /* 배경 이미지 중앙 배치 */
@@ -16,7 +16,7 @@ body {
 /* 폰트 설정 */
 @font-face {
   font-family: 'BakDaHyeon';
-  src: url('/natsumi-bot-Introduction/fonts/온글잎 박다현체.ttf') format('truetype'); /* 폰트 파일 경로 (확인 필요!) */
+  src: url('https://natsumi.kro.kr/natsumi-bot-Introduction/fonts/온글잎 박다현체.ttf') format('truetype'); /* 절대 경로로 수정 */
   font-weight: normal;
   font-style: normal;
 }
