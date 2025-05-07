@@ -76,8 +76,8 @@ p {
 /* 오른쪽 메뉴 */
 .right-menu-container {
   position: fixed;
-  right: -260px;
   top: 0;
+  right: -260px;
   width: 250px;
   height: 100%;
   background: rgba(0, 0, 0, 0.85);
@@ -182,7 +182,7 @@ p {
 
   .right-menu-container {
     width: 100%;
-    right: -100%;
+    right: -100%; /* 모바일에서는 메뉴가 완전히 숨겨져야 함 */
   }
 
   .right-menu-container.open {
@@ -192,5 +192,10 @@ p {
   #playMusicButton {
     font-size: 0.9em;
     padding: 8px 16px;
+  }
+
+  /* 모바일에서 음악 재생 버튼 크기 조정 */
+  #musicControlContainer {
+    bottom: 10px;
   }
 }
