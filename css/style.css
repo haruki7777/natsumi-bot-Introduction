@@ -16,7 +16,7 @@ body {
 /* 폰트 설정 */
 @font-face {
   font-family: 'BakDaHyeon';
-  src: url('https://natsumi.kro.kr/natsumi-bot-Introduction/fonts/온글잎 박다현체.ttf') format('truetype'); /* 절대 경로로 수정 */
+  src: url('https://natsumi.kro.kr/natsumi-bot-Introduction/온글잎 박다현체.ttf') format('truetype'); /* 절대 경로로 수정 */
   font-weight: normal;
   font-style: normal;
 }
