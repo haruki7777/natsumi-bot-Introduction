@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Natsumi Bot</title>
   <link rel="stylesheet" href="css/style.css" />
+  <!-- CSS 파일이 style.css 로 잘 연결되어 있네! 여기 CSS에서 .command-list는 display: none; 이고 .command-list.active 는 display: block; 으로 되어 있어야 해! -->
 </head>
 <body>
 
@@ -26,16 +27,61 @@
   <div id="rightMenu" class="right-menu-container">
     <h2>명령어 목록</h2>
     <div class="menu-content">
-      <h3>기본 명령어</h3>
-      <ul>
-        <li>
-          <button class="command-category-button">일반 명령어</button>
-          <div class="command-list">
-            <button class="command-item-button" onclick="showDescription('ping')">/핑</button>
-            <button class="command-item-button" onclick="showDescription('help')">/도움말</button>
-          </div>
-        </li>
-      </ul>
+
+      <!-- ✨ 일반 명령어 카테고리 시작 ✨ -->
+      <!-- 이 버튼을 누르면 'generalCommandsList' 라는 ID를 가진 div가 열릴 거야! -->
+      <button class="command-category-button" data-target="generalCommandsList">일반 명령어</button>
+      <!-- 여기가 일반 명령어 목록! 이 div의 ID는 버튼의 data-target 값과 똑같아야 해! -->
+      <div id="generalCommandsList" class="command-list">
+        <!-- class="command-list" 덕분에 CSS에서 display: none; 으로 숨겨져 있을 거야 -->
+        <!-- 자바스크립트에서 showDescription 함수를 호출할 때 사용할 영어 명령어 키 값을 onclick에 넣어줘! -->
+        <button class="command-item-button" onclick="showDescription('ping')">/핑</button>
+        <button class="command-item-button" onclick="showDescription('slotmachine')">/슬롯머신</button>
+        <button class="command-item-button" onclick="showDescription('balance')">/잔액</button>
+        <button class="command-item-button" onclick="showDescription('money')">/머니</button>
+        <button class="command-item-button" onclick="showDescription('attendance')">/출석</button>
+        <button class="command-item-button" onclick="showDescription('intro')">/소개</button>
+        <button class="command-item-button" onclick="showDescription('natsumi')">/나츠미</button>
+        <button class="command-item-button" onclick="showDescription('translate')">/번역</button>
+        <button class="command-item-button" onclick="showDescription('sfw')">/sfw</button>
+        <button class="command-item-button" onclick="showDescription('nsfw')">/nsfw</button>
+        <button class="command-item-button" onclick="showDescription('prefix')">/호출어</button>
+        <button class="command-item-button" onclick="showDescription('serverinfo')">/서버정보</button>
+        <button class="command-item-button" onclick="showDescription('userinfo')">/유저정보</button>
+      </div>
+      <!-- ✨ 일반 명령어 카테고리 끝 ✨ -->
+
+      <!-- ✨ 관리자 명령어 카테고리 시작 ✨ -->
+       <!-- 이 버튼을 누르면 'adminCommandsList' 라는 ID를 가진 div가 열릴 거야! -->
+      <button class="command-category-button" data-target="adminCommandsList">관리자 명령어</button>
+      <!-- 여기가 관리자 명령어 목록! 이 div의 ID는 버튼의 data-target 값과 똑같아야 해! -->
+      <div id="adminCommandsList" class="command-list">
+         <!-- 자바스크립트에서 showDescription 함수를 호출할 때 사용할 영어 명령어 키 값을 onclick에 넣어줘! -->
+        <button class="command-item-button" onclick="showDescription('ban')">/밴</button>
+        <button class="command-item-button" onclick="showDescription('unban')">/언밴</button>
+        <button class="command-item-button" onclick="showDescription('mute')">/뮤트</button>
+        <button class="command-item-button" onclick="showDescription('unmute')">/언뮤트</button>
+        <button class="command-item-button" onclick="showDescription('kick')">/킥</button>
+        <button class="command-item-button" onclick="showDescription('clear')">/청소</button>
+        <button class="command-item-button" onclick="showDescription('vote')">/투표</button>
+        <button class="command-item-button" onclick="showDescription('stealemote')">/이모지 스틸</button>
+        <button class="command-item-button" onclick="showDescription('stealsticker')">/스티커 스틸</button>
+      </div>
+       <!-- ✨ 관리자 명령어 카테고리 끝 ✨ -->
+
+       <!-- ✨ 개발자 명령어 카테고리 시작 ✨ -->
+        <!-- 이 버튼을 누르면 'devCommandsList' 라는 ID를 가진 div가 열릴 거야! -->
+       <button class="command-category-button" data-target="devCommandsList">개발자 명령어</button>
+       <!-- 여기가 개발자 명령어 목록! 이 div의 ID는 버튼의 data-target 값과 똑같아야 해! -->
+      <div id="devCommandsList" class="command-list">
+          <!-- 자바스크립트에서 showDescription 함수를 호출할 때 사용할 영어 명령어 키 값을 onclick에 넣어줘! -->
+         <button class="command-item-button" onclick="showDescription('learn')">/학습</button>
+         <button class="command-item-button" onclick="showDescription('reload')">/리로드</button>
+         <!-- '돈주기' 명령어의 영어 키는 'givemoney' 이런 식으로 정하고 onclick에 넣어줘! -->
+         <button class="command-item-button" onclick="showDescription('givemoney')">/돈주기</button>
+      </div>
+      <!-- ✨ 개발자 명령어 카테고리 끝 ✨ -->
+
     </div>
   </div>
 
@@ -55,6 +101,7 @@
     </div>
   </div>
 
+  <!-- 이 script.js 파일 안에 아까 내가 보내준 자바스크립트 코드가 들어가야 해! -->
   <script src="js/script.js"></script>
 </body>
 </html>
